@@ -1,16 +1,25 @@
 import requests
 import json
-
-# get API from .env
 import os
+import time
+import logging
 from dotenv import load_dotenv
+
+# Load the environment variables
 load_dotenv()
 
 API_KEY = os.getenv('YT_API_KEY')
-print("API_KEY:", API_KEY)  # Debugging line to check if API_KEY is loaded
 if not API_KEY:
     raise ValueError("YouTube API key not found. Please set the YT_API_KEY in your .env file.")
+
 BASE_URL = 'https://www.googleapis.com/youtube/v3/videos'  # Correct endpoint for videos
+
+# Set up logging to log messages to a file and print to console
+logging.basicConfig(
+    filename='video_fetcher.log',  # Log to this file
+    level=logging.INFO,  # Log level (INFO will capture info, warnings, and errors)
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Log message format
+)
 
 # Load processed video IDs from JSON file
 def load_processed_videos(file_path='processed_videos.json'):
@@ -27,7 +36,7 @@ def save_processed_videos(processed_video_ids, file_path='processed_videos.json'
 def fetch_video_metadata(video_id, processed_video_ids):
     # Skip if the video has already been processed
     if video_id in processed_video_ids:
-        print(f"Video ID {video_id} has already been processed. Skipping...")
+        logging.info(f"Video ID {video_id} has already been processed. Skipping...")
         return None
 
     params = {
@@ -38,11 +47,22 @@ def fetch_video_metadata(video_id, processed_video_ids):
     try:
         response = requests.get(BASE_URL, params=params)
         response.raise_for_status()  # Raise an error for bad responses (status code 4xx or 5xx)
-        
+
+        # Debugging: Log all headers to check quota information
+        logging.info(f"Response Headers: {response.headers}")
+        # log responsee body for debugging
+        logging.info(f"Response Body: {response.text}")
+
+        # Handle quota limit
+        remaining_quota = response.headers.get('X-Quota-Remaining')
+        if remaining_quota and int(remaining_quota) <= 0:
+            logging.warning(f"API quota exceeded. Waiting for an hour before retrying...")
+            time.sleep(3600)  # Wait an hour before continuing
+
         video_data = response.json().get('items', [])
         
         if not video_data:
-            print(f"No data found for video ID: {video_id}")
+            logging.warning(f"No data found for video ID: {video_id}")
             return None
         
         video_data = video_data[0]  # Extract the first video item
@@ -71,10 +91,10 @@ def fetch_video_metadata(video_id, processed_video_ids):
         return video_metadata
 
     except requests.exceptions.RequestException as e:
-        print(f"Request failed for video ID: {video_id}, Error: {e}")
+        logging.error(f"Request failed for video ID: {video_id}, Error: {e}")
         return None
     except KeyError as e:
-        print(f"Missing expected metadata for video ID: {video_id}, Error: {e}")
+        logging.error(f"Missing expected metadata for video ID: {video_id}, Error: {e}")
         return None
 
 def fetch_news_videos(query, max_results=10):
@@ -97,14 +117,14 @@ def fetch_news_videos(query, max_results=10):
         # For each video, get detailed metadata
         for video in search_results:
             video_id = video['id']['videoId']
-            print(f"Fetching metadata for video ID: {video_id}")
+            logging.info(f"Fetching metadata for video ID: {video_id}")
             metadata = fetch_video_metadata(video_id, processed_video_ids)
             
             if metadata:
                 video_data.append(metadata)
 
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching search results: {e}")
+        logging.error(f"Error fetching search results: {e}")
 
     return video_data
 
@@ -119,4 +139,5 @@ if __name__ == '__main__':
     with open('news_videos_metadata.json', 'w') as f:
         json.dump(videos, f, indent=4)
     
+    logging.info(f"Metadata saved to 'news_videos_metadata.json'.")
     print(f"Metadata saved to 'news_videos_metadata.json'.")
