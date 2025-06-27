@@ -51,7 +51,7 @@ def fetch_video_metadata(video_id, processed_video_ids):
         # Debugging: Log all headers to check quota information
         logging.info(f"Response Headers: {response.headers}")
         # log responsee body for debugging
-        logging.info(f"Response Body: {response.text}")
+        # logging.info(f"Response Body: {response.text}")
 
         # Handle quota limit
         remaining_quota = response.headers.get('X-Quota-Remaining')
