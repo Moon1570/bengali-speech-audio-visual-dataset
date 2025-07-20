@@ -39,6 +39,6 @@ split_audio_on_silence(
     audio_path="denoised_audio/aRHpoSebPPI.wav",
     output_dir="sentence_chunks/aRHpoSebPPI",
     min_silence_len=600,     # can tweak between 500–1000
-    silence_thresh=-40,      # adjust based on your audio loudness
+    silence_thresh=-50,      # adjust based on your audio loudness
     keep_silence=250         # optional: keep some silence around sentences
 )
