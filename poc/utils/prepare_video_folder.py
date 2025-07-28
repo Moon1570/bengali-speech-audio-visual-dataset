@@ -2,7 +2,7 @@ from moviepy.editor import VideoFileClip
 import os
 import json
 
-def prepare_video_dir(video_path, video_id, output_root="output"):
+def prepare_video_dir(video_path, video_id, output_root="outputs"):
     os.makedirs(output_root, exist_ok=True)
     base_path = os.path.join(output_root, video_id)
     os.makedirs(base_path, exist_ok=True)
@@ -43,12 +43,17 @@ def is_video_already_processed(video_id, output_dir):
 
 def mark_video_as_processed(video_id, metadata, output_dir):
     log_path = os.path.join(output_dir, "processed.json")
+
+    # ✅ Ensure directory exists
+    os.makedirs(output_dir, exist_ok=True)
+
     if os.path.exists(log_path):
         with open(log_path, "r") as f:
-            processed_log = json.load(f)
+            processed = json.load(f)
     else:
-        processed_log = {}
+        processed = {}
 
-    processed_log[video_id] = metadata
+    processed[video_id] = metadata
+
     with open(log_path, "w") as f:
-        json.dump(processed_log, f, indent=2)
+        json.dump(processed, f, indent=2)
