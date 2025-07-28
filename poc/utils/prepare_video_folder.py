@@ -28,3 +28,27 @@ def prepare_video_dir(video_path, video_id, output_root="output"):
         json.dump(metadata, f, indent=4)
 
     return base_path, video_out_path, audio_path
+
+
+
+def is_video_already_processed(video_id, output_dir):
+    log_path = os.path.join(output_dir, "processed.json")
+    if not os.path.exists(log_path):
+        return False
+
+    with open(log_path, "r") as f:
+        processed_log = json.load(f)
+    return video_id in processed_log
+
+
+def mark_video_as_processed(video_id, metadata, output_dir):
+    log_path = os.path.join(output_dir, "processed.json")
+    if os.path.exists(log_path):
+        with open(log_path, "r") as f:
+            processed_log = json.load(f)
+    else:
+        processed_log = {}
+
+    processed_log[video_id] = metadata
+    with open(log_path, "w") as f:
+        json.dump(processed_log, f, indent=2)
