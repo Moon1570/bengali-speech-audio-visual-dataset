@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
+    <mxGraphModel dx="1103" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Pool" style="swimlane;html=1;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=0;startSize=20;horizontalStack=0;" parent="1" vertex="1">
+          <mxGeometry x="120" y="120" width="450" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Lane 1" style="swimlane;html=1;startSize=20;horizontal=0;" parent="2" vertex="1">
+          <mxGeometry x="20" width="430" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="query_youtube_api" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="120" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="parse_metadata" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="240" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="download_video" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="360" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="prepare_video_dir" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="480" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="split_into_chunks" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="600" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="save_chunks" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="720" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="transcribe_local" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="120" y="160" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="transcribe_google" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="240" y="160" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="write_text" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="360" y="160" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="mark_video_as_processed" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" parent="3" vertex="1">
+          <mxGeometry x="480" y="160" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Lane 2" style="swimlane;html=1;startSize=20;horizontal=0;" parent="2" vertex="1">
+          <mxGeometry x="20" y="240" width="430" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="yt_dlp" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="120" y="30" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="moviepy" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="240" y="30" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="os" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="360" y="30" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="json" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="480" y="30" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="faster-whisper" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="600" y="30" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="CTranslate2" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="720" y="30" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="SpeechRecognition" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="120" y="160" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="Google Web Speech API" style="ellipse;whiteSpace=wrap;html=1;" parent="14" vertex="1">
+          <mxGeometry x="240" y="160" width="40" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
