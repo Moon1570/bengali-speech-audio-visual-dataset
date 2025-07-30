@@ -3,7 +3,7 @@ from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
 # Load and transcribe Bangla audio
 model = whisper.load_model("large")
-result = model.transcribe("downloads/aRHpoSebPPI.mp4", language="bn", word_timestamps=True)
+result = model.transcribe("downloads/flMKyqVWNG1.mp4", language="bn", word_timestamps=True)
 
 # Debug: Show first few transcription segments
 print("Total transcription segments:", len(result["segments"]))
@@ -45,6 +45,6 @@ print("Total output chunks to save:", len(segments))
 # Cut and save each segment
 for i, (start, end, text) in enumerate(segments):
     print(f"Saving chunk {i}: {start:.2f}s to {end:.2f}s")
-    ffmpeg_extract_subclip("downloads/aRHpoSebPPI.mp4", start, end, targetname=f"video_chunks/aRHpoSebPPI/chunk_{i}.mp4")
-    with open(f"chunk_{i}.txt", "w", encoding="utf-8") as f:
+    ffmpeg_extract_subclip("downloads/flMKyqVWNG1.mp4", start, end, targetname=f"video_chunks/flMKyqVWNG1/chunk_{i}.mp4")
+    with open(f"text_chunks/flMKyqVWNG1/chunk_{i}.txt", "w", encoding="utf-8") as f:
         f.write(text)
