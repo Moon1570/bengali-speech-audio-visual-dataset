@@ -19,6 +19,7 @@ def load_video_metadata(file_path='news_videos_metadata.json'):
         with open(file_path, 'r') as f:
             return json.load(f)
     else:
+        print("Metadata file not found!")
         logging.error("Metadata file not found!")
         return []
 
@@ -42,12 +43,16 @@ def download_video(video_id):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             try:
                 ydl.download([video_url])
+                print(f"Downloaded video {video_id}")
                 logging.info(f"Downloaded video {video_id}")
             except yt_dlp.utils.DownloadError as e:
+                print(f"Error downloading video {video_id}: {e}")
                 logging.error(f"Error downloading video {video_id}: {e}")
             except Exception as e:
+                print(f"Unexpected error downloading video {video_id}: {e}")
                 logging.error(f"Unexpected error downloading video {video_id}: {e}")
     else:
+        print(f"Video {video_id} already downloaded. Skipping...")
         logging.info(f"Video {video_id} already downloaded. Skipping...")
 
 # Main function to download videos from the metadata
@@ -62,6 +67,7 @@ def download_videos_from_metadata(metadata_file='news_videos_metadata.json'):
     # Loop through the metadata and download videos
     for video in video_metadata:
         video_id = video['video_id']
+        print(f"Checking if video {video_id} is already downloaded...")
         logging.info(f"Checking if video {video_id} is already downloaded...")
         download_video(video_id)
 
