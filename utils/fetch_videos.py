@@ -101,12 +101,13 @@ def fetch_news_videos(query, max_results=10):
     video_data = []
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     
-    # Fetch search results
+    # Fetch search results with videoLicense filter
     params = {
         'part': 'snippet',
         'maxResults': max_results,
         'q': query,
         'type': 'video',
+        'videoLicense': 'creativeCommon',  # Only Creative Commons licensed videos
         'key': API_KEY
     }
     try:
