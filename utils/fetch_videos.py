@@ -80,7 +80,7 @@ def fetch_video_metadata(video_id, processed_video_ids):
             'view_count': video_data['statistics'].get('viewCount', 'N/A'),  # Optional, may not always be available
             'like_count': video_data['statistics'].get('likeCount', 'N/A'),  # Optional
             'comment_count': video_data['statistics'].get('commentCount', 'N/A'),  # Optional
-            'fetcbhed_at': time.strftime('%Y-%m-%d %H:%M:%S'),  # Current time when metadata is fetched
+            'fetched_at': time.strftime('%Y-%m-%d %H:%M:%S'),  # Current time when metadata is fetched
             'video_url': f"https://www.youtube.com/watch?v={video_id}",
             'video_path': f"outputs/{video_id}/video.mp4",  # Path
             'audio_path': f"outputs/{video_id}/video.wav",  # Path for audio
