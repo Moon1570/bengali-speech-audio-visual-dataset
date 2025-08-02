@@ -80,6 +80,15 @@ def fetch_video_metadata(video_id, processed_video_ids):
             'view_count': video_data['statistics'].get('viewCount', 'N/A'),  # Optional, may not always be available
             'like_count': video_data['statistics'].get('likeCount', 'N/A'),  # Optional
             'comment_count': video_data['statistics'].get('commentCount', 'N/A'),  # Optional
+            'fetched_at': time.strftime('%Y-%m-%d %H:%M:%S'),  # Current time when metadata is fetched
+            'video_url': f"https://www.youtube.com/watch?v={video_id}",
+            'video_path': f"outputs/{video_id}/video.mp4",  # Path
+            'audio_path': f"outputs/{video_id}/video.wav",  # Path for audio
+            'video_id': video_id,  # Ensure video_id is included in metadata
+            'output_dir': f"outputs/{video_id}",  # Directory where video is stored
+            'audio_format': 'wav',  # Audio format used
+            'video_format': 'mp4',  # Video format used
+            'timestamp': time.time()  # Current timestamp for processing time
         }
 
         # Add the video_id to the processed set to prevent future duplicates
@@ -101,18 +110,23 @@ def fetch_news_videos(query, max_results=10):
     video_data = []
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     
-    # Fetch search results
+    # Fetch search results with videoLicense filter
     params = {
         'part': 'snippet',
         'maxResults': max_results,
         'q': query,
         'type': 'video',
+        'videoLicense': 'creativeCommon',  # Only Creative Commons licensed videos
         'key': API_KEY
     }
     try:
         search_response = requests.get(search_url, params=params)
         search_response.raise_for_status()
         search_results = search_response.json().get('items', [])
+
+        if not search_results:
+            logging.warning(f"No search results found for query: {query}")
+            return video_data
 
         # For each video, get detailed metadata
         for video in search_results:
