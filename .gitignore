@@ -196,3 +196,20 @@ cython_debug/
 
 .DS_Store
 *.swp
+# ignore images(jpg) videos(.avi)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.webm
+*.flv
+*.wmv
+*.m4v
+*.mpg
+*.mpeg
+*.m2ts
+*.wav
