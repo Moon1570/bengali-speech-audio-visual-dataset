@@ -1,5 +1,5 @@
 {
-  "input_video": "/Users/darklord/Research/Audio Visual/Code/bengali-speech-audio-visual-dataset/downloads/aRHpoSebPPI.mp4",
+  "input_video": "downloads/aRHpoSebPPI.mp4",
   "total_chunks": 14,
   "successful_analysis": 12,
   "no_faces_chunks": 2,
