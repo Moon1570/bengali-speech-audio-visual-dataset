@@ -5,7 +5,7 @@
   "no_faces_chunks": 2,
   "chunk_duration": 30,
   "overlap": 5,
-  "processing_time": 1754125675.55356,
+  "processing_timestamp": 1754125675.55356,
   "results": [
     {
       "status": "success",
