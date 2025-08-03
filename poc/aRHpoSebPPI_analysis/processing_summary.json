@@ -1,11 +1,11 @@
 {
-  "input_video": "/Users/darklord/Research/Audio Visual/Code/bengali-speech-audio-visual-dataset/downloads/aRHpoSebPPI.mp4",
+  "input_video": "downloads/aRHpoSebPPI.mp4",
   "total_chunks": 14,
   "successful_analysis": 12,
   "no_faces_chunks": 2,
   "chunk_duration": 30,
   "overlap": 5,
-  "processing_time": 1754125675.55356,
+  "processing_timestamp": 1754125675.55356,
   "results": [
     {
       "status": "success",
