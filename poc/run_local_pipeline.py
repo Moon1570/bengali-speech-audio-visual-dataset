@@ -1,5 +1,6 @@
 import os
 import argparse
+from tqdm import tqdm
 
 from utils.slice_video_by_silence import split_video_by_silence
 from utils.transcribe_chunks import transcribe_chunks  # Whisper-based transcription
@@ -34,16 +35,23 @@ def main():
     # Step 2: Silence-based splitting
     print("🔍 Splitting video into chunks based on silence...")
     timestamps = split_into_chunks(video_out, audio_out, base_dir)
+
+    # Progress display for chunk creation
+    for _ in tqdm(range(len(timestamps)), desc="Creating chunks", unit="chunk"):
+        pass
     print(f"✅ Split into {len(timestamps)} chunks.")
 
     # Step 3: Optional transcription
     if args.transcribe:
         chunks_dir = os.path.join(base_dir, "chunks")
         print(f"📝 Starting transcription using {args.model}...")
+        
+        # Wrap transcription calls with tqdm inside their logic if needed
         if args.model == "google":
-            transcribe_chunks_google(chunks_dir)
+            transcribe_chunks_google(chunks_dir, show_progress=True)
         else:
-            transcribe_chunks(chunks_dir)
+            transcribe_chunks(chunks_dir, show_progress=True)
+
         print(f"✅ Transcription completed using {args.model}.")
 
     # Step 4: Mark as processed
