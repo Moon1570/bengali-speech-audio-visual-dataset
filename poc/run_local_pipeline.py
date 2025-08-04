@@ -26,7 +26,7 @@ else:
     timestamps = split_into_chunks(video_out, audio_out, base_dir)
 
     # Step 3: Transcription
-    transcribe_chunks(os.path.join(base_dir, "chunks"))
+    # transcribe_chunks(os.path.join(base_dir, "chunks"))
 
     # Step 4: Mark as processed
     metadata = {
