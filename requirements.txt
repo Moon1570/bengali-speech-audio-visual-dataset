@@ -63,6 +63,7 @@ pytz==2025.2
 PyYAML==6.0.2
 regex==2024.11.6
 requests==2.32.4
+ruff==0.12.7
 safetensors==0.5.3
 scenedetect==0.5.1
 scikit-learn==1.7.0
