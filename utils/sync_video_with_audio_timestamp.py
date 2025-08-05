@@ -3,7 +3,7 @@ import moviepy.editor as mp
 import os
 
 def get_chunk_timestamps(full_audio_path, chunks_dir):
-    full_audio = AudioSegment.from_wav(full_audio_path)
+    # full_audio = AudioSegment.from_wav(full_audio_path)
     chunk_files = sorted(f for f in os.listdir(chunks_dir) if f.endswith('.wav'))
     timestamps = []
     cursor = 0

@@ -1,6 +1,5 @@
 import whisper
 import os
-import speech_recognition as sr
 from pydub import AudioSegment
 
 def amplify_audio(input_file, output_file, gain_dB=10):
@@ -32,7 +31,7 @@ def split_audio_into_chunks(audio_path, max_words_per_chunk=20):
     amplify_audio(audio_path, amplified_audio_path)
 
     # Initialize Whisper model
-    model = whisper.load_model("large")  # Or "base" / "small" / "tiny" based on speed/accuracy tradeoff
+    # model = whisper.load_model("large")  # Or "base" / "small" / "tiny" based on speed/accuracy tradeoff
 
     # Initialize audio file
     audio = AudioSegment.from_wav(amplified_audio_path)
