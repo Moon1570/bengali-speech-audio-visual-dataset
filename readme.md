@@ -35,7 +35,7 @@ This project focuses on creating a Bengali speech audio-visual dataset by proces
 
 ## Usage
 ### Running the Pipeline
-To run the main pipeline:
+To run the main pipeline (without transcription/):
 ```bash
 python run_pipeline.py <video_path> [--output_root <output_directory>] [--transcribe] [--model <whisper|google>]
 ```

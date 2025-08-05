@@ -56,7 +56,7 @@ def fetch_video_metadata(video_id, processed_video_ids):
         # Handle quota limit
         remaining_quota = response.headers.get('X-Quota-Remaining')
         if remaining_quota and int(remaining_quota) <= 0:
-            logging.warning(f"API quota exceeded. Waiting for an hour before retrying...")
+            logging.warning("API quota exceeded. Waiting for an hour before retrying...")
             time.sleep(3600)  # Wait an hour before continuing
 
         video_data = response.json().get('items', [])
@@ -69,7 +69,6 @@ def fetch_video_metadata(video_id, processed_video_ids):
 
         # Extract the necessary metadata
         video_metadata = {
-            'video_id': video_data['id'],
             'title': video_data['snippet']['title'],
             'description': video_data['snippet']['description'],
             'channel_title': video_data['snippet']['channelTitle'],
@@ -153,5 +152,5 @@ if __name__ == '__main__':
     with open('news_videos_metadata.json', 'w') as f:
         json.dump(videos, f, indent=4)
     
-    logging.info(f"Metadata saved to 'news_videos_metadata.json'.")
-    print(f"Metadata saved to 'news_videos_metadata.json'.")
+    logging.info("Metadata saved to 'news_videos_metadata.json'.")
+    print("Metadata saved to 'news_videos_metadata.json'.")

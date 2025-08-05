@@ -1,0 +1,5 @@
+[tool.ruff]
+line-length = 100
+select = ["E", "F"]  # E = pycodestyle errors, F = pyflakes
+ignore = ["E501"]    # Ignore line-length errors (optional)
+exclude = ["resources_from_sir"]
