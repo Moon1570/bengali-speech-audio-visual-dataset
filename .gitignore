@@ -213,5 +213,5 @@ cython_debug/
 *.mpeg
 *.m2ts
 *.wav
-outputs/
+outputs
 .DS_Store
