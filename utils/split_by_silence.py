@@ -6,6 +6,7 @@ from moviepy.editor import VideoFileClip
 from pydub import AudioSegment, silence
 
 from .face_detection import filter_chunks_with_faces, save_face_detection_preview
+from .refine_chunks import refine_all_chunks_by_faces, save_refinement_preview
 
 
 def reduce_noise(audio_seg, noise_duration_ms=500):
@@ -63,7 +64,8 @@ def merge_close_chunks(timestamps, min_gap=0.25):
 
 def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
                       keep_silence=100, max_chunk_len=10000, filter_faces=True,
-                      face_threshold=0.3, sample_interval=0.5):
+                      face_threshold=0.3, sample_interval=0.5, refine_chunks=True,
+                      refine_sample_rate=0.1, min_face_duration=0.5, min_chunk_duration=1.0):
     chunks_dir = os.path.join(output_dir, "chunks")
     audio_out = os.path.join(chunks_dir, "audio")
     video_out = os.path.join(chunks_dir, "video")
@@ -136,6 +138,19 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
         
         # Save face detection previews
         save_face_detection_preview(video_path, timestamps, output_dir)
+    
+    # Refine chunks to remove non-face segments if enabled
+    if refine_chunks and len(timestamps) > 0:
+        original_timestamps = timestamps.copy()
+        timestamps = refine_all_chunks_by_faces(
+            video_path, timestamps,
+            sample_rate=refine_sample_rate,
+            min_face_duration=min_face_duration,
+            min_chunk_duration=min_chunk_duration
+        )
+        
+        # Save refinement previews
+        save_refinement_preview(video_path, original_timestamps, timestamps, output_dir)
     
     # Show final chunk statistics
     if len(timestamps) > 0:

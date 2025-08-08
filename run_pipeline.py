@@ -76,6 +76,35 @@ def main():
         default=0.5,
         help="Interval in seconds for sampling frames for face detection (default: 0.5)"
     )
+    parser.add_argument(
+        "--refine-chunks",
+        action="store_true",
+        default=True,
+        help="Refine chunks to remove non-face segments (default: True)"
+    )
+    parser.add_argument(
+        "--no-refine-chunks",
+        action="store_true",
+        help="Disable chunk refinement (keep full chunks)"
+    )
+    parser.add_argument(
+        "--refine-sample-rate",
+        type=float,
+        default=0.1,
+        help="Sample rate in seconds for chunk refinement (default: 0.1)"
+    )
+    parser.add_argument(
+        "--min-face-duration",
+        type=float,
+        default=0.5,
+        help="Minimum duration for face segments in refinement (default: 0.5)"
+    )
+    parser.add_argument(
+        "--min-chunk-duration",
+        type=float,
+        default=1.0,
+        help="Minimum duration for refined chunks (default: 1.0)"
+    )
 
     args = parser.parse_args()
     video_path = args.video_path
@@ -98,12 +127,17 @@ def main():
         
         # Determine face filtering setting
         filter_faces = args.filter_faces and not args.no_filter_faces
+        refine_chunks = args.refine_chunks and not args.no_refine_chunks
         
         timestamps = split_into_chunks(
             video_out, audio_out, base_dir,
             filter_faces=filter_faces,
             face_threshold=args.face_threshold,
-            sample_interval=args.sample_interval
+            sample_interval=args.sample_interval,
+            refine_chunks=refine_chunks,
+            refine_sample_rate=args.refine_sample_rate,
+            min_face_duration=args.min_face_duration,
+            min_chunk_duration=args.min_chunk_duration
         )
 
         for _ in tqdm(range(len(timestamps)), desc="Creating chunks", unit="chunk"):
