@@ -5,6 +5,9 @@ import noisereduce as nr
 from moviepy.editor import VideoFileClip
 from pydub import AudioSegment, silence
 
+from .face_detection import filter_chunks_with_faces, save_face_detection_preview
+from .refine_chunks import refine_all_chunks_by_faces, save_refinement_preview
+
 
 def reduce_noise(audio_seg, noise_duration_ms=500):
     samples = np.array(audio_seg.get_array_of_samples(), dtype=float)
@@ -60,7 +63,9 @@ def merge_close_chunks(timestamps, min_gap=0.25):
     return merged
 
 def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
-                      keep_silence=100, max_chunk_len=10000):
+                      keep_silence=100, max_chunk_len=10000, filter_faces=True,
+                      face_threshold=0.3, sample_interval=0.5, refine_chunks=True,
+                      refine_sample_rate=0.1, min_face_duration=0.5, min_chunk_duration=1.0):
     chunks_dir = os.path.join(output_dir, "chunks")
     audio_out = os.path.join(chunks_dir, "audio")
     video_out = os.path.join(chunks_dir, "video")
@@ -120,23 +125,54 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
 
     # Keep chunks small - disable merging for sentence-level granularity
     print("Keeping chunks small for sentence-level processing...")
-    print(f"Total chunks: {len(timestamps)}")
+    print(f"Total chunks before face filtering: {len(timestamps)}")
     
-    # Show chunk durations for debugging
-    short_chunks = [end - start for start, end in timestamps if (end - start) < 5.0]
-    medium_chunks = [end - start for start, end in timestamps if 5.0 <= (end - start) < 10.0]
-    long_chunks = [end - start for start, end in timestamps if (end - start) >= 10.0]
+    # Filter chunks by face detection if enabled
+    if filter_faces:
+        print("\n🔍 Filtering chunks by face detection...")
+        timestamps = filter_chunks_with_faces(
+            video_path, timestamps, 
+            sample_interval=sample_interval,
+            face_threshold=face_threshold
+        )
+        
+        # Save face detection previews
+        save_face_detection_preview(video_path, timestamps, output_dir)
     
-    print(f"Short chunks (<5s): {len(short_chunks)}")
-    print(f"Medium chunks (5-10s): {len(medium_chunks)}")
-    print(f"Long chunks (>=10s): {len(long_chunks)}")
+    # Refine chunks to remove non-face segments if enabled
+    if refine_chunks and len(timestamps) > 0:
+        original_timestamps = timestamps.copy()
+        timestamps = refine_all_chunks_by_faces(
+            video_path, timestamps,
+            sample_rate=refine_sample_rate,
+            min_face_duration=min_face_duration,
+            min_chunk_duration=min_chunk_duration
+        )
+        
+        # Save refinement previews
+        save_refinement_preview(video_path, original_timestamps, timestamps, output_dir)
     
-    # Show first few chunks as examples
-    for i, (start, end) in enumerate(timestamps[:5]):
-        duration = end - start
-        print(f"Chunk {i}: {start:.2f}s - {end:.2f}s (duration: {duration:.2f}s)")
-    if len(timestamps) > 5:
-        print(f"... and {len(timestamps) - 5} more chunks")
+    # Show final chunk statistics
+    if len(timestamps) > 0:
+        short_chunks = [end - start for start, end in timestamps if (end - start) < 5.0]
+        medium_chunks = [end - start for start, end in timestamps if 5.0 <= (end - start) < 10.0]
+        long_chunks = [end - start for start, end in timestamps if (end - start) >= 10.0]
+        
+        print(f"\nFinal chunk statistics:")
+        print(f"  Total chunks: {len(timestamps)}")
+        print(f"  Short chunks (<5s): {len(short_chunks)}")
+        print(f"  Medium chunks (5-10s): {len(medium_chunks)}")
+        print(f"  Long chunks (>=10s): {len(long_chunks)}")
+        
+        # Show first few chunks as examples
+        for i, (start, end) in enumerate(timestamps[:5]):
+            duration = end - start
+            print(f"  Chunk {i}: {start:.2f}s - {end:.2f}s (duration: {duration:.2f}s)")
+        if len(timestamps) > 5:
+            print(f"  ... and {len(timestamps) - 5} more chunks")
+    else:
+        print("⚠️ No chunks remaining after face filtering!")
+        return []
 
     # Export audio and video
     video = VideoFileClip(video_path)
