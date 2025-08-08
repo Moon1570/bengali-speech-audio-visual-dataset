@@ -53,6 +53,29 @@ def main():
         default="whisper",
         help="Transcription model to use (default: whisper). Options: whisper, google"
     )
+    parser.add_argument(
+        "--filter-faces",
+        action="store_true",
+        default=True,
+        help="Filter chunks to only keep those with detected faces (default: True)"
+    )
+    parser.add_argument(
+        "--no-filter-faces",
+        action="store_true",
+        help="Disable face filtering (keep all chunks)"
+    )
+    parser.add_argument(
+        "--face-threshold",
+        type=float,
+        default=0.3,
+        help="Minimum ratio of frames with faces to keep chunk (default: 0.3)"
+    )
+    parser.add_argument(
+        "--sample-interval",
+        type=float,
+        default=0.5,
+        help="Interval in seconds for sampling frames for face detection (default: 0.5)"
+    )
 
     args = parser.parse_args()
     video_path = args.video_path
@@ -72,7 +95,16 @@ def main():
 
         # ✅ Step 2: Silence-based splitting
         logger.info("🔍 Splitting video into chunks based on silence...")
-        timestamps = split_into_chunks(video_out, audio_out, base_dir)
+        
+        # Determine face filtering setting
+        filter_faces = args.filter_faces and not args.no_filter_faces
+        
+        timestamps = split_into_chunks(
+            video_out, audio_out, base_dir,
+            filter_faces=filter_faces,
+            face_threshold=args.face_threshold,
+            sample_interval=args.sample_interval
+        )
 
         for _ in tqdm(range(len(timestamps)), desc="Creating chunks", unit="chunk"):
             pass
