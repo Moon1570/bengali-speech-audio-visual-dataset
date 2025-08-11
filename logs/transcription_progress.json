@@ -1,0 +1,72 @@
+{
+  "sessions": [
+    {
+      "session_id": "20250812_014057",
+      "start_time": "2025-08-12T01:40:57.625032",
+      "end_time": null,
+      "model": "google",
+      "mode": "single",
+      "target_path": "data/poor_quality/",
+      "videos_processed": 0,
+      "videos_successful": 0,
+      "videos_failed": 0,
+      "total_chunks": 0,
+      "chunks_transcribed": 0,
+      "status": "running"
+    },
+    {
+      "session_id": "20250812_014145",
+      "start_time": "2025-08-12T01:41:45.241840",
+      "end_time": "2025-08-12T01:41:51.163588",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "data/poor_quality/",
+      "videos_processed": 2,
+      "videos_successful": 2,
+      "videos_failed": 0,
+      "total_chunks": 2,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 5.920647859573364
+    }
+  ],
+  "completed_videos": {
+    "chunk_002_google": {
+      "video_id": "chunk_002",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-12T01:41:49.979064"
+    },
+    "chunk_003_google": {
+      "video_id": "chunk_003",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-12T01:41:51.157235"
+    },
+    "aRHpoSebPPI_google": {
+      "video_id": "aRHpoSebPPI",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 17,
+      "total_chunks": 17,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-12T01:08:29.451979"
+    },
+    "flMKyqVWNG0_google": {
+      "video_id": "flMKyqVWNG0",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 13,
+      "total_chunks": 13,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-12T01:29:16.282881"
+    }
+  },
+  "last_updated": "2025-08-12T01:41:51.163601"
+}
