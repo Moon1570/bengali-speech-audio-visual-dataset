@@ -1,1 +1,2 @@
-utt_id,yt_id,chunk_id,audio_path,video_normal_path,video_bbox_path,video_cropped_path,google_txt,whisper_txt,split
+utt_id,yt_id,chunk_id,audio_path,video_normal_path,video_bbox_path,video_cropped_path,google_txt,whisper_txt,split,poi
+,,,,,,,,,,
