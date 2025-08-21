@@ -32,7 +32,7 @@ from utils.file_discovery import (
     prepare_video_for_transcription, check_transcription_status
 )
 from utils.transcription_manager import (
-    transcribe_video, generate_transcription_report, process_batch_items
+    transcribe_video, transcribe_video_both_models, generate_transcription_report, process_batch_items
 )
 
 # Create logs directory
@@ -84,9 +84,9 @@ Examples:
     
     parser.add_argument(
         "--model",
-        choices=["whisper", "google"],
+        choices=["whisper", "google", "both"],
         default="google",
-        help="Transcription model to use (default: google)"
+        help="Transcription model to use (default: google). Use 'both' to run both models and save transcription.txt in separate folders"
     )
     
     parser.add_argument(
@@ -297,22 +297,64 @@ Examples:
                 sys.exit(1)
             
             if args.report_only and not video_info.get('needs_processing', False):
-                status = check_transcription_status(video_info['chunks_dir'], args.model)
-                logger.info("=" * 60)
-                logger.info(f"📊 TRANSCRIPTION STATUS: {video_info['video_id']}")
-                logger.info("=" * 60)
-                logger.info(f"🤖 Model: {args.model}")
-                logger.info(f"🎵 Audio chunks: {status['audio_count']}")
-                logger.info(f"📝 Transcribed: {status['text_count']}")
-                logger.info(f"✅ Complete: {'Yes' if status['complete'] else 'No'}")
-                if status['audio_count'] > 0:
-                    completion_rate = (status['text_count'] / status['audio_count']) * 100
-                    logger.info(f"📈 Completion rate: {completion_rate:.1f}%")
+                if args.model == "both":
+                    # For both models, check both google and whisper status
+                    google_status = check_transcription_status(video_info['chunks_dir'], "google")
+                    whisper_status = check_transcription_status(video_info['chunks_dir'], "whisper")
+                    logger.info("=" * 60)
+                    logger.info(f"📊 TRANSCRIPTION STATUS: {video_info['video_id']}")
+                    logger.info("=" * 60)
+                    logger.info(f"🤖 Model: BOTH (Google + Whisper)")
+                    logger.info(f"🎵 Audio chunks: {google_status['audio_count']}")
+                    logger.info(f"📝 Google transcribed: {google_status['text_count']}")
+                    logger.info(f"📝 Whisper transcribed: {whisper_status['text_count']}")
+                    logger.info(f"✅ Google complete: {'Yes' if google_status['complete'] else 'No'}")
+                    logger.info(f"✅ Whisper complete: {'Yes' if whisper_status['complete'] else 'No'}")
+                    if google_status['audio_count'] > 0:
+                        google_rate = (google_status['text_count'] / google_status['audio_count']) * 100
+                        whisper_rate = (whisper_status['text_count'] / whisper_status['audio_count']) * 100
+                        logger.info(f"📈 Google completion rate: {google_rate:.1f}%")
+                        logger.info(f"📈 Whisper completion rate: {whisper_rate:.1f}%")
+                    total_transcribed = google_status['text_count'] + whisper_status['text_count']
+                else:
+                    status = check_transcription_status(video_info['chunks_dir'], args.model)
+                    total_transcribed = status['text_count']
+                    logger.info("=" * 60)
+                    logger.info(f"📊 TRANSCRIPTION STATUS: {video_info['video_id']}")
+                    logger.info("=" * 60)
+                    logger.info(f"🤖 Model: {args.model}")
+                    logger.info(f"🎵 Audio chunks: {status['audio_count']}")
+                    logger.info(f"📝 Transcribed: {status['text_count']}")
+                    logger.info(f"✅ Complete: {'Yes' if status['complete'] else 'No'}")
+                    if status['audio_count'] > 0:
+                        completion_rate = (status['text_count'] / status['audio_count']) * 100
+                        logger.info(f"📈 Completion rate: {completion_rate:.1f}%")
+                
                 logger.info("=" * 60)
                 end_session(session_id, {"videos_processed": 1, "videos_successful": 0, "videos_failed": 0,
-                                       "total_chunks": status['audio_count'], "chunks_transcribed": status['text_count'], 
+                                       "total_chunks": video_info['audio_count'], "chunks_transcribed": total_transcribed, 
                                        "duration_seconds": 0})
                 sys.exit(0)
+            
+            # Process single item
+            start_time = time.time()
+            if args.model == "both":
+                success = transcribe_video_both_models(video_info, args.force)
+            else:
+                success = transcribe_video(video_info, args.model, args.force)
+            duration = time.time() - start_time
+            
+            # Get final transcription count
+            try:
+                if args.model == "both":
+                    google_status = check_transcription_status(video_info['chunks_dir'], "google")
+                    whisper_status = check_transcription_status(video_info['chunks_dir'], "whisper")
+                    final_transcribed = google_status['text_count'] + whisper_status['text_count']
+                else:
+                    final_status = check_transcription_status(video_info['chunks_dir'], args.model)
+                    final_transcribed = final_status['text_count']
+            except:
+                final_transcribed = 0
             
             # Process single item
             start_time = time.time()
