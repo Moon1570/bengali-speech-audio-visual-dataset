@@ -12,7 +12,6 @@ build/
 develop-eggs/
 dist/
 downloads/
-audio/
 eggs/
 .eggs/
 lib/
@@ -201,8 +200,6 @@ cython_debug/
 *.jpeg
 *.png
 *.gif
-*.mp4
-*.avi
 *.mkv
 *.mov
 *.webm

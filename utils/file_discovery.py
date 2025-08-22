@@ -215,6 +215,69 @@ def copy_transcripts_to_outputs(video_info, model):
         logger.error(f"❌ Failed to copy transcripts for {video_id}: {e}")
 
 
+def save_both_models_transcripts(video_info, original_file_path=None):
+    """
+    Save transcription results for both Google and Whisper models in separate folders 
+    with transcription files named same as the original video file (for "both" model option).
+    
+    Args:
+        video_info: Dictionary containing video information
+        original_file_path: Path to the original input file
+    """
+    video_id = video_info['video_id']
+    chunks_dir = video_info['chunks_dir']
+    
+    # Determine the input folder and original filename
+    if original_file_path:
+        input_folder = os.path.dirname(original_file_path)
+        original_filename = os.path.splitext(os.path.basename(original_file_path))[0]
+    else:
+        # Try to find the input folder from video_info
+        input_folder = video_info.get('input_folder', '.')
+        original_filename = video_id
+    
+    models = [
+        ("google", "text_google"),
+        ("whisper", "text")
+    ]
+    
+    saved_count = 0
+    
+    for model, text_dir_name in models:
+        text_dir = os.path.join(chunks_dir, text_dir_name)
+        
+        if not os.path.exists(text_dir):
+            logger.warning(f"⚠️  No {model} transcription results found for {video_id}")
+            continue
+        
+        try:
+            # Create model-specific folder
+            model_folder = os.path.join(input_folder, model)
+            os.makedirs(model_folder, exist_ok=True)
+            
+            # Create transcription file with same name as original video file + .txt extension
+            transcript_filename = f"{original_filename}.txt"
+            transcript_file_path = os.path.join(model_folder, transcript_filename)
+            
+            # Combine all chunks into the transcription file
+            valid_chunks = combine_chunks_to_single_file(text_dir, transcript_file_path)
+            
+            if valid_chunks > 0:
+                logger.info(f"📄 Saved {model} transcription: {transcript_file_path}")
+                logger.info(f"📊 Combined {valid_chunks} chunks for {model}")
+                saved_count += 1
+            else:
+                logger.warning(f"⚠️  No valid content found for {model} transcription")
+                
+        except Exception as e:
+            logger.error(f"❌ Error saving {model} transcription: {e}")
+    
+    if saved_count > 0:
+        logger.info(f"✅ Successfully saved transcriptions for {saved_count} model(s) in separate folders")
+    else:
+        logger.warning(f"⚠️  No transcriptions were saved for {video_id}")
+
+
 def combine_chunks_to_single_file(text_dir, output_file_path):
     """
     Combine all chunk transcript files into a single file.
