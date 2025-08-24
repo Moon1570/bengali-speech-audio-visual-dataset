@@ -1,0 +1,29 @@
+# Audio-only CTC Configuration
+# For Bengali speech recognition baseline
+
+data:
+  manifest: experiments/multimodal_compare/manifests/manifest.csv
+  split_train: train
+  split_val: val
+  sample_rate: 16000
+  mel_bins: 80
+  win_ms: 25
+  hop_ms: 10
+  bucketing_sec: 40
+  num_workers: 4
+
+text:
+  charset: experiments/multimodal_compare/manifests/charset.txt
+
+train:
+  epochs: 15
+  batch_size: null           # computed from bucketing_sec
+  lr: 0.0003
+  optimizer: adamw
+  warmup_steps: 200
+  grad_clip: 5.0
+  amp: true
+  seed: 42
+
+ckpt_dir: experiments/multimodal_compare/checkpoints/audio_ctc
+log_dir: experiments/multimodal_compare/logs/audio_ctc
