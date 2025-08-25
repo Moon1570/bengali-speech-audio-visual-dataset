@@ -186,6 +186,62 @@
       "chunks_transcribed": 0,
       "status": "completed",
       "duration_seconds": 3092.868983030319
+    },
+    {
+      "session_id": "20250825_224345",
+      "start_time": "2025-08-25T22:43:45.123336",
+      "end_time": null,
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/test/video_normal",
+      "videos_processed": 0,
+      "videos_successful": 0,
+      "videos_failed": 0,
+      "total_chunks": 0,
+      "chunks_transcribed": 0,
+      "status": "running"
+    },
+    {
+      "session_id": "20250825_225330",
+      "start_time": "2025-08-25T22:53:30.220999",
+      "end_time": null,
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/test/video_normal",
+      "videos_processed": 0,
+      "videos_successful": 0,
+      "videos_failed": 0,
+      "total_chunks": 0,
+      "chunks_transcribed": 0,
+      "status": "running"
+    },
+    {
+      "session_id": "20250825_230005",
+      "start_time": "2025-08-25T23:00:05.787560",
+      "end_time": null,
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/test/video_normal",
+      "videos_processed": 0,
+      "videos_successful": 0,
+      "videos_failed": 0,
+      "total_chunks": 0,
+      "chunks_transcribed": 0,
+      "status": "running"
+    },
+    {
+      "session_id": "20250825_230330",
+      "start_time": "2025-08-25T23:03:30.395225",
+      "end_time": null,
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/testcopy/video_normal",
+      "videos_processed": 0,
+      "videos_successful": 0,
+      "videos_failed": 0,
+      "total_chunks": 0,
+      "chunks_transcribed": 0,
+      "status": "running"
     }
   ],
   "completed_videos": {
@@ -1654,7 +1710,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:00:16.899581"
+      "last_updated": "2025-08-25T23:03:33.925519"
     },
     "efhkN7e8238_chunk_044_whisper": {
       "video_id": "efhkN7e8238_chunk_044",
@@ -1663,7 +1719,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:02:15.804340"
+      "last_updated": "2025-08-25T23:05:42.134069"
     },
     "efhkN7e8238_chunk_078_google": {
       "video_id": "efhkN7e8238_chunk_078",
@@ -1672,7 +1728,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:02:18.776918"
+      "last_updated": "2025-08-25T23:05:45.251437"
     },
     "efhkN7e8238_chunk_078_whisper": {
       "video_id": "efhkN7e8238_chunk_078",
@@ -1681,7 +1737,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:02:49.545481"
+      "last_updated": "2025-08-25T22:47:05.254907"
     },
     "efhkN7e8238_chunk_087_google": {
       "video_id": "efhkN7e8238_chunk_087",
@@ -1690,7 +1746,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:02:51.445966"
+      "last_updated": "2025-08-25T22:47:06.933900"
     },
     "efhkN7e8238_chunk_087_whisper": {
       "video_id": "efhkN7e8238_chunk_087",
@@ -1699,7 +1755,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:03:09.366827"
+      "last_updated": "2025-08-25T22:47:24.889738"
     },
     "efhkN7e8238_chunk_045_google": {
       "video_id": "efhkN7e8238_chunk_045",
@@ -1708,7 +1764,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:03:10.822407"
+      "last_updated": "2025-08-25T22:47:26.346416"
     },
     "efhkN7e8238_chunk_045_whisper": {
       "video_id": "efhkN7e8238_chunk_045",
@@ -1717,7 +1773,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:03:29.334968"
+      "last_updated": "2025-08-25T22:47:45.985725"
     },
     "efhkN7e8238_chunk_051_google": {
       "video_id": "efhkN7e8238_chunk_051",
@@ -1726,7 +1782,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:03:31.677083"
+      "last_updated": "2025-08-25T22:47:48.360930"
     },
     "efhkN7e8238_chunk_051_whisper": {
       "video_id": "efhkN7e8238_chunk_051",
@@ -1735,7 +1791,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:03:56.629236"
+      "last_updated": "2025-08-25T22:48:14.817861"
     },
     "efhkN7e8238_chunk_084_google": {
       "video_id": "efhkN7e8238_chunk_084",
@@ -1744,7 +1800,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:03:58.258734"
+      "last_updated": "2025-08-25T22:48:16.357050"
     },
     "efhkN7e8238_chunk_084_whisper": {
       "video_id": "efhkN7e8238_chunk_084",
@@ -2548,5 +2604,5 @@
       "last_updated": "2025-08-23T23:51:46.072382"
     }
   },
-  "last_updated": "2025-08-23T23:51:46.076388"
+  "last_updated": "2025-08-25T23:05:45.251450"
 }
