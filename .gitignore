@@ -212,4 +212,74 @@ cython_debug/
 *.wav
 outputs
 .DS_Store
-data
+
+# ML/AI Training artifacts
+# Model checkpoints and weights
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# Training logs and metrics
+*.log
+*.jsonl
+logs/
+wandb/
+tensorboard/
+mlruns/
+
+# Experiment artifacts
+experiments/*/checkpoints/
+experiments/*/logs/
+experiments/*/results/*.csv
+experiments/*/results/*.json
+experiments/*/cache/
+experiments/*/tmp/
+
+# Keep important result summaries and configs
+!experiments/*/results/*summary*.md
+!experiments/*/results/*baseline*.md
+!experiments/*/configs/
+
+# Data processing artifacts
+processed_data/
+features/
+spectrograms/
+embeddings/
+
+# Large dataset files
+*.tar
+*.tar.gz
+*.zip
+*.7z
+*.rar
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.cache/
+__temp__/
+
+# IDE and editor files
+.idea/
+*.sublime-*
+*.kate-swp
+.vscode/settings.json
+.vscode/launch.json
+
+# OS specific
+Thumbs.db
+desktop.ini
+
+# Python virtual environments
+.venv/
+venv/
+.env
+.python-version
+

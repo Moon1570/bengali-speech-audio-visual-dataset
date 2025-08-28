@@ -145,9 +145,8 @@ def copy_transcripts_to_outputs(video_info, model):
         video_info: Dictionary containing video information
         model: Transcription model used ('whisper' or 'google')
     """
-    if not video_info.get('is_temporary', False):
-        # Not a temporary structure, probably already in outputs
-        return
+    # Determine whether this was a temporary (raw-file) processing or a pre-processed input
+    is_temporary = video_info.get('is_temporary', False)
     
     video_id = video_info['video_id']
     chunks_dir = video_info['chunks_dir']
@@ -159,58 +158,105 @@ def copy_transcripts_to_outputs(video_info, model):
         logger.warning(f"⚠️  No transcription results found for {video_id}")
         return
     
-    # Target outputs directory
-    outputs_dir = os.path.join("outputs", video_id)
-    output_chunks_dir = os.path.join(outputs_dir, "chunks")
-    output_text_dir = os.path.join(output_chunks_dir, "text" if model == "whisper" else "text_google")
-    
     try:
-        # Create target directory structure
-        os.makedirs(output_text_dir, exist_ok=True)
-        
-        # Copy transcription files
-        import shutil
-        text_files = [f for f in os.listdir(text_dir) if f.endswith(".txt")]
-        
-        for text_file in text_files:
-            src_path = os.path.join(text_dir, text_file)
-            dst_path = os.path.join(output_text_dir, text_file)
-            shutil.copy2(src_path, dst_path)
-        
-        logger.info(f"📋 Copied {len(text_files)} transcripts to: {output_text_dir}")
-        
-        # Also copy audio chunks for reference
-        audio_dir = os.path.join(chunks_dir, "audio")
-        output_audio_dir = os.path.join(output_chunks_dir, "audio")
-        
-        if os.path.exists(audio_dir):
-            os.makedirs(output_audio_dir, exist_ok=True)
-            wav_files = [f for f in os.listdir(audio_dir) if f.endswith(".wav")]
-            
-            for wav_file in wav_files:
-                src_path = os.path.join(audio_dir, wav_file)
-                dst_path = os.path.join(output_audio_dir, wav_file)
+        if is_temporary:
+            # Target outputs directory for temporary/raw-file processing
+            outputs_dir = os.path.join("outputs", video_id)
+            output_chunks_dir = os.path.join(outputs_dir, "chunks")
+            output_text_dir = os.path.join(output_chunks_dir, "text" if model == "whisper" else "text_google")
+
+            # Create target directory structure
+            os.makedirs(output_text_dir, exist_ok=True)
+
+            # Copy transcription files
+            import shutil
+            text_files = [f for f in os.listdir(text_dir) if f.endswith(".txt")]
+
+            for text_file in text_files:
+                src_path = os.path.join(text_dir, text_file)
+                dst_path = os.path.join(output_text_dir, text_file)
                 shutil.copy2(src_path, dst_path)
-            
-            logger.info(f"🎵 Copied {len(wav_files)} audio chunks to: {output_audio_dir}")
-        
-        # Create metadata file
-        metadata = {
-            "video_id": video_id,
-            "model": model,
-            "audio_chunks": video_info.get('audio_count', 0),
-            "transcription_files": len(text_files),
-            "processed_timestamp": str(datetime.now()),
-            "source_file": video_info.get('source_file', 'unknown')
-        }
-        
-        metadata_path = os.path.join(outputs_dir, "metadata.json")
-        import json
-        with open(metadata_path, 'w', encoding='utf-8') as f:
-            json.dump(metadata, f, indent=2, ensure_ascii=False)
-        
-        logger.info(f"📄 Created metadata file: {metadata_path}")
-        
+
+            logger.info(f"📋 Copied {len(text_files)} transcripts to: {output_text_dir}")
+
+            # Also copy audio chunks for reference
+            audio_dir = os.path.join(chunks_dir, "audio")
+            output_audio_dir = os.path.join(output_chunks_dir, "audio")
+
+            if os.path.exists(audio_dir):
+                os.makedirs(output_audio_dir, exist_ok=True)
+                wav_files = [f for f in os.listdir(audio_dir) if f.endswith(".wav")]
+
+                for wav_file in wav_files:
+                    src_path = os.path.join(audio_dir, wav_file)
+                    dst_path = os.path.join(output_audio_dir, wav_file)
+                    shutil.copy2(src_path, dst_path)
+
+                logger.info(f"🎵 Copied {len(wav_files)} audio chunks to: {output_audio_dir}")
+
+            # Create metadata file
+            metadata = {
+                "video_id": video_id,
+                "model": model,
+                "audio_chunks": video_info.get('audio_count', 0),
+                "transcription_files": len(text_files),
+                "processed_timestamp": str(datetime.now()),
+                "source_file": video_info.get('source_file', 'unknown')
+            }
+
+            metadata_path = os.path.join(outputs_dir, "metadata.json")
+            import json
+            with open(metadata_path, 'w', encoding='utf-8') as f:
+                json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+            logger.info(f"📄 Created metadata file: {metadata_path}")
+
+        else:
+            # Pre-processed input: create sibling transcripts_{model} folder next to the input directory
+            # Prefer video_dir if available, otherwise try chunks_dir parent
+            video_dir = video_info.get('video_dir')
+            if video_dir and os.path.exists(video_dir):
+                parent_dir = os.path.dirname(video_dir)
+            else:
+                # Fallback: use parent of chunks_dir
+                parent_dir = os.path.dirname(os.path.dirname(chunks_dir))
+
+            target_folder = os.path.join(parent_dir, f"transcripts_{model}")
+            os.makedirs(target_folder, exist_ok=True)
+
+            # Combine chunks into single transcript file named <video_id>.txt
+            transcript_path = os.path.join(target_folder, f"{video_id}.txt")
+            combined = combine_chunks_to_single_file(text_dir, transcript_path)
+
+            # Copy individual chunk files for reference
+            import shutil
+            chunks_out_dir = os.path.join(target_folder, "chunks")
+            os.makedirs(chunks_out_dir, exist_ok=True)
+            text_files = [f for f in os.listdir(text_dir) if f.endswith(".txt")]
+            for text_file in text_files:
+                src_path = os.path.join(text_dir, text_file)
+                dst_path = os.path.join(chunks_out_dir, text_file)
+                shutil.copy2(src_path, dst_path)
+
+            logger.info(f"📄 Saved combined transcript to: {transcript_path} (combined {combined} chunks)")
+            logger.info(f"📋 Copied {len(text_files)} individual chunk transcripts to: {chunks_out_dir}")
+
+            # Create a lightweight metadata file next to transcripts
+            metadata = {
+                "video_id": video_id,
+                "model": model,
+                "audio_chunks": video_info.get('audio_count', 0),
+                "transcription_files": len(text_files),
+                "processed_timestamp": str(datetime.now()),
+                "source_dir": video_dir or chunks_dir
+            }
+            metadata_path = os.path.join(target_folder, "metadata.json")
+            import json
+            with open(metadata_path, 'w', encoding='utf-8') as f:
+                json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+            logger.info(f"📄 Created metadata file: {metadata_path}")
+    
     except Exception as e:
         logger.error(f"❌ Failed to copy transcripts for {video_id}: {e}")
 
@@ -251,10 +297,23 @@ def save_both_models_transcripts(video_info, original_file_path=None):
             continue
         
         try:
-            # Create model-specific folder
-            model_folder = os.path.join(input_folder, model)
+            # Decide target folder. Prefer parent of pre-processed video_dir so transcripts sit next to the video folder.
+            if not original_file_path:
+                video_dir = video_info.get('video_dir')
+                if video_dir and os.path.exists(video_dir):
+                    parent_dir = os.path.dirname(video_dir)
+                    model_folder = os.path.join(parent_dir, f"transcripts_{model}")
+                else:
+                    # Fallback to input_folder (could be '.')
+                    model_folder = os.path.join(input_folder, f"transcripts_{model}")
+            else:
+                # For raw/original file input, prefer the parent of the input folder so
+                # transcripts are placed alongside the folder that contains the input files
+                parent_of_input = os.path.dirname(input_folder)
+                model_folder = os.path.join(parent_of_input, f"transcripts_{model}")
+
             os.makedirs(model_folder, exist_ok=True)
-            
+
             # Create transcription file with same name as original video file + .txt extension
             transcript_filename = f"{original_filename}.txt"
             transcript_file_path = os.path.join(model_folder, transcript_filename)
@@ -346,28 +405,37 @@ def save_transcripts_to_input_folder(video_info, model, original_file_path=None)
         # Create single transcript file with same name as input file
         transcript_filename = f"{original_filename}.txt"
         transcript_file_path = os.path.join(input_folder, transcript_filename)
-        
+
         # Combine all chunks into a single file
         valid_chunks = combine_chunks_to_single_file(text_dir, transcript_file_path)
-        
+
         logger.info(f"📄 Saved combined transcript: {transcript_file_path}")
         logger.info(f"📊 Combined {valid_chunks} chunks into single file")
-        
-        # Also create the detailed chunks directory for reference
-        transcript_dir = os.path.join(input_folder, f"{original_filename}_transcripts_{model}")
+
+        # Also create the sibling transcripts_{model} directory for detailed chunks
+        # Prefer parent of video_dir if available so transcripts sit next to the pre-processed folder
+        video_dir = video_info.get('video_dir')
+        if video_dir and os.path.exists(video_dir):
+            parent_dir = os.path.dirname(video_dir)
+            transcript_dir = os.path.join(parent_dir, f"transcripts_{model}")
+        else:
+            # For raw/original file input, prefer the parent of the input folder
+            parent_of_input = os.path.dirname(input_folder)
+            transcript_dir = os.path.join(parent_of_input, f"transcripts_{model}")
+
         os.makedirs(transcript_dir, exist_ok=True)
-        
+
         # Copy individual chunk files for detailed reference
         import shutil
         text_files = [f for f in os.listdir(text_dir) if f.endswith(".txt")]
-        
+
         for text_file in text_files:
             src_path = os.path.join(text_dir, text_file)
             dst_path = os.path.join(transcript_dir, text_file)
             shutil.copy2(src_path, dst_path)
-        
+
         logger.info(f"📋 Also saved {len(text_files)} individual chunks to: {transcript_dir}")
-        
+
         # Create a summary file
         summary_file = os.path.join(input_folder, f"{original_filename}_{model}_summary.txt")
         with open(summary_file, 'w', encoding='utf-8') as f:
@@ -391,9 +459,9 @@ def save_transcripts_to_input_folder(video_info, model, original_file_path=None)
                             f.write(f"{text_file}: {content}\n")
                 except Exception as e:
                     f.write(f"{text_file}: [Error reading file: {e}]\n")
-        
+
         logger.info(f"📄 Created summary file: {summary_file}")
-        
+
     except Exception as e:
         logger.error(f"❌ Failed to save transcripts to input folder for {video_id}: {e}")
 
