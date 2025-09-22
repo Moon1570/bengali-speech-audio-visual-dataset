@@ -242,6 +242,21 @@
       "total_chunks": 0,
       "chunks_transcribed": 0,
       "status": "running"
+    },
+    {
+      "session_id": "20250830_005345",
+      "start_time": "2025-08-30T00:53:45.960306",
+      "end_time": "2025-08-30T01:30:06.309724",
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/hxhLGCguRO0/video_normal",
+      "videos_processed": 56,
+      "videos_successful": 55,
+      "videos_failed": 1,
+      "total_chunks": 62,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 2180.344609975815
     }
   ],
   "completed_videos": {
@@ -2602,7 +2617,997 @@
       "total_chunks": 1,
       "completion_rate": 100.0,
       "last_updated": "2025-08-23T23:51:46.072382"
+    },
+    "hxhLGCguRO0_chunk_003_google": {
+      "video_id": "hxhLGCguRO0_chunk_003",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:53:49.451891"
+    },
+    "hxhLGCguRO0_chunk_003_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_003",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:54:45.355051"
+    },
+    "hxhLGCguRO0_chunk_029_google": {
+      "video_id": "hxhLGCguRO0_chunk_029",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:54:47.178435"
+    },
+    "hxhLGCguRO0_chunk_029_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_029",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:55:49.600957"
+    },
+    "hxhLGCguRO0_chunk_001_google": {
+      "video_id": "hxhLGCguRO0_chunk_001",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:55:51.412618"
+    },
+    "hxhLGCguRO0_chunk_001_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_001",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:56:11.188275"
+    },
+    "hxhLGCguRO0_chunk_015_google": {
+      "video_id": "hxhLGCguRO0_chunk_015",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:56:12.532659"
+    },
+    "hxhLGCguRO0_chunk_015_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_015",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:56:28.232814"
+    },
+    "hxhLGCguRO0_chunk_011_google": {
+      "video_id": "hxhLGCguRO0_chunk_011",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:56:30.863817"
+    },
+    "hxhLGCguRO0_chunk_011_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_011",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:56:52.477041"
+    },
+    "hxhLGCguRO0_chunk_004_google": {
+      "video_id": "hxhLGCguRO0_chunk_004",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:56:54.417712"
+    },
+    "hxhLGCguRO0_chunk_004_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_004",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:58:44.990018"
+    },
+    "hxhLGCguRO0_chunk_007_google": {
+      "video_id": "hxhLGCguRO0_chunk_007",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:58:46.718482"
+    },
+    "hxhLGCguRO0_chunk_007_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_007",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:59:03.238987"
+    },
+    "hxhLGCguRO0_chunk_100_google": {
+      "video_id": "hxhLGCguRO0_chunk_100",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T00:59:04.642867"
+    },
+    "hxhLGCguRO0_chunk_100_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_100",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:00:10.454707"
+    },
+    "hxhLGCguRO0_chunk_128_google": {
+      "video_id": "hxhLGCguRO0_chunk_128",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:00:12.244260"
+    },
+    "hxhLGCguRO0_chunk_128_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_128",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:02:03.552380"
+    },
+    "hxhLGCguRO0_chunk_060_google": {
+      "video_id": "hxhLGCguRO0_chunk_060",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:02:05.004257"
+    },
+    "hxhLGCguRO0_chunk_060_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_060",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:02:50.842195"
+    },
+    "hxhLGCguRO0_chunk_048_google": {
+      "video_id": "hxhLGCguRO0_chunk_048",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:02:53.404734"
+    },
+    "hxhLGCguRO0_chunk_048_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_048",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:03:23.007899"
+    },
+    "hxhLGCguRO0_chunk_061_google": {
+      "video_id": "hxhLGCguRO0_chunk_061",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:03:24.498942"
+    },
+    "hxhLGCguRO0_chunk_061_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_061",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:04:00.701627"
+    },
+    "hxhLGCguRO0_chunk_088_google": {
+      "video_id": "hxhLGCguRO0_chunk_088",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:04:03.675921"
+    },
+    "hxhLGCguRO0_chunk_088_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_088",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:04:29.579767"
+    },
+    "hxhLGCguRO0_chunk_063_google": {
+      "video_id": "hxhLGCguRO0_chunk_063",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:04:31.448555"
+    },
+    "hxhLGCguRO0_chunk_063_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_063",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:04:47.693991"
+    },
+    "hxhLGCguRO0_chunk_062_google": {
+      "video_id": "hxhLGCguRO0_chunk_062",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:04:48.894869"
+    },
+    "hxhLGCguRO0_chunk_062_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_062",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:05:01.817199"
+    },
+    "hxhLGCguRO0_chunk_076_google": {
+      "video_id": "hxhLGCguRO0_chunk_076",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:05:03.547732"
+    },
+    "hxhLGCguRO0_chunk_076_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_076",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:05:52.097254"
+    },
+    "hxhLGCguRO0_chunk_067_google": {
+      "video_id": "hxhLGCguRO0_chunk_067",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:05:55.144934"
+    },
+    "hxhLGCguRO0_chunk_067_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_067",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:06:29.836768"
+    },
+    "hxhLGCguRO0_chunk_105_google": {
+      "video_id": "hxhLGCguRO0_chunk_105",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:06:31.638950"
+    },
+    "hxhLGCguRO0_chunk_105_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_105",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:09:28.049849"
+    },
+    "hxhLGCguRO0_chunk_065_google": {
+      "video_id": "hxhLGCguRO0_chunk_065",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:09:29.868493"
+    },
+    "hxhLGCguRO0_chunk_065_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_065",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:09:48.564639"
+    },
+    "hxhLGCguRO0_chunk_071_google": {
+      "video_id": "hxhLGCguRO0_chunk_071",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:09:50.591625"
+    },
+    "hxhLGCguRO0_chunk_071_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_071",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:10:13.939277"
+    },
+    "hxhLGCguRO0_chunk_104_google": {
+      "video_id": "hxhLGCguRO0_chunk_104",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:10:15.325206"
+    },
+    "hxhLGCguRO0_chunk_104_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_104",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:10:32.154843"
+    },
+    "hxhLGCguRO0_chunk_121_google": {
+      "video_id": "hxhLGCguRO0_chunk_121",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:10:33.271955"
+    },
+    "hxhLGCguRO0_chunk_121_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_121",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:10:47.008515"
+    },
+    "hxhLGCguRO0_chunk_109_google": {
+      "video_id": "hxhLGCguRO0_chunk_109",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:10:48.586973"
+    },
+    "hxhLGCguRO0_chunk_109_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_109",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:11:09.451439"
+    },
+    "hxhLGCguRO0_chunk_096_google": {
+      "video_id": "hxhLGCguRO0_chunk_096",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:11:10.991777"
+    },
+    "hxhLGCguRO0_chunk_096_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_096",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:11:24.407757"
+    },
+    "hxhLGCguRO0_chunk_055_google": {
+      "video_id": "hxhLGCguRO0_chunk_055",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:11:27.034881"
+    },
+    "hxhLGCguRO0_chunk_055_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_055",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:11:54.016710"
+    },
+    "hxhLGCguRO0_chunk_040_google": {
+      "video_id": "hxhLGCguRO0_chunk_040",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:11:55.845059"
+    },
+    "hxhLGCguRO0_chunk_040_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_040",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:12:43.536423"
+    },
+    "hxhLGCguRO0_chunk_083_google": {
+      "video_id": "hxhLGCguRO0_chunk_083",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:12:45.147423"
+    },
+    "hxhLGCguRO0_chunk_083_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_083",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:13:04.576616"
+    },
+    "hxhLGCguRO0_chunk_042_google": {
+      "video_id": "hxhLGCguRO0_chunk_042",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:13:06.095486"
+    },
+    "hxhLGCguRO0_chunk_042_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_042",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:13:23.846468"
+    },
+    "hxhLGCguRO0_chunk_043_google": {
+      "video_id": "hxhLGCguRO0_chunk_043",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:13:26.062602"
+    },
+    "hxhLGCguRO0_chunk_043_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_043",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:13:49.406162"
+    },
+    "hxhLGCguRO0_chunk_057_google": {
+      "video_id": "hxhLGCguRO0_chunk_057",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:13:51.686545"
+    },
+    "hxhLGCguRO0_chunk_057_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_057",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:14:08.896044"
+    },
+    "hxhLGCguRO0_chunk_127_google": {
+      "video_id": "hxhLGCguRO0_chunk_127",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:14:10.776641"
+    },
+    "hxhLGCguRO0_chunk_127_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_127",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:14:28.661743"
+    },
+    "hxhLGCguRO0_chunk_133_google": {
+      "video_id": "hxhLGCguRO0_chunk_133",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:14:30.308288"
+    },
+    "hxhLGCguRO0_chunk_133_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_133",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:16:32.058028"
+    },
+    "hxhLGCguRO0_chunk_084_google": {
+      "video_id": "hxhLGCguRO0_chunk_084",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:16:34.852196"
+    },
+    "hxhLGCguRO0_chunk_084_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_084",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:16:56.516715"
+    },
+    "hxhLGCguRO0_chunk_052_google": {
+      "video_id": "hxhLGCguRO0_chunk_052",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:16:58.517237"
+    },
+    "hxhLGCguRO0_chunk_052_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_052",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:17:16.444914"
+    },
+    "hxhLGCguRO0_chunk_091_google": {
+      "video_id": "hxhLGCguRO0_chunk_091",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:17:21.057012"
+    },
+    "hxhLGCguRO0_chunk_091_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_091",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:18:06.708463"
+    },
+    "hxhLGCguRO0_chunk_118_google": {
+      "video_id": "hxhLGCguRO0_chunk_118",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:18:37.687773"
+    },
+    "hxhLGCguRO0_chunk_118_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_118",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:19:07.057681"
+    },
+    "hxhLGCguRO0_chunk_124_google": {
+      "video_id": "hxhLGCguRO0_chunk_124",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:19:09.588197"
+    },
+    "hxhLGCguRO0_chunk_124_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_124",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:19:41.152677"
+    },
+    "hxhLGCguRO0_chunk_087_google": {
+      "video_id": "hxhLGCguRO0_chunk_087",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 3,
+      "total_chunks": 3,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:19:45.804467"
+    },
+    "hxhLGCguRO0_chunk_087_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_087",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 3,
+      "total_chunks": 3,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:20:36.088667"
+    },
+    "hxhLGCguRO0_chunk_044_google": {
+      "video_id": "hxhLGCguRO0_chunk_044",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:20:39.460832"
+    },
+    "hxhLGCguRO0_chunk_044_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_044",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:21:00.843466"
+    },
+    "hxhLGCguRO0_chunk_050_google": {
+      "video_id": "hxhLGCguRO0_chunk_050",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:21:02.730718"
+    },
+    "hxhLGCguRO0_chunk_050_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_050",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:21:28.896760"
+    },
+    "hxhLGCguRO0_chunk_051_google": {
+      "video_id": "hxhLGCguRO0_chunk_051",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:21:30.447385"
+    },
+    "hxhLGCguRO0_chunk_051_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_051",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:21:44.923744"
+    },
+    "hxhLGCguRO0_chunk_079_google": {
+      "video_id": "hxhLGCguRO0_chunk_079",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:21:46.871191"
+    },
+    "hxhLGCguRO0_chunk_079_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_079",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:22:14.841932"
+    },
+    "hxhLGCguRO0_chunk_131_google": {
+      "video_id": "hxhLGCguRO0_chunk_131",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:22:16.243030"
+    },
+    "hxhLGCguRO0_chunk_131_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_131",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:22:32.099167"
+    },
+    "hxhLGCguRO0_chunk_119_google": {
+      "video_id": "hxhLGCguRO0_chunk_119",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:22:34.867195"
+    },
+    "hxhLGCguRO0_chunk_119_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_119",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:23:25.752468"
+    },
+    "hxhLGCguRO0_chunk_023_google": {
+      "video_id": "hxhLGCguRO0_chunk_023",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:23:27.606656"
+    },
+    "hxhLGCguRO0_chunk_023_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_023",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:23:50.020545"
+    },
+    "hxhLGCguRO0_chunk_141_google": {
+      "video_id": "hxhLGCguRO0_chunk_141",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:23:51.312499"
+    },
+    "hxhLGCguRO0_chunk_141_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_141",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:25:29.485906"
+    },
+    "hxhLGCguRO0_chunk_035_google": {
+      "video_id": "hxhLGCguRO0_chunk_035",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:25:30.759086"
+    },
+    "hxhLGCguRO0_chunk_035_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_035",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:25:47.804459"
+    },
+    "hxhLGCguRO0_chunk_021_google": {
+      "video_id": "hxhLGCguRO0_chunk_021",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:25:49.039472"
+    },
+    "hxhLGCguRO0_chunk_021_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_021",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:26:03.589763"
+    },
+    "hxhLGCguRO0_chunk_009_google": {
+      "video_id": "hxhLGCguRO0_chunk_009",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:26:05.754505"
+    },
+    "hxhLGCguRO0_chunk_009_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_009",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:26:30.679130"
+    },
+    "hxhLGCguRO0_chunk_008_google": {
+      "video_id": "hxhLGCguRO0_chunk_008",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:26:32.069337"
+    },
+    "hxhLGCguRO0_chunk_008_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_008",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:28:02.060541"
+    },
+    "hxhLGCguRO0_chunk_034_google": {
+      "video_id": "hxhLGCguRO0_chunk_034",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:28:03.600723"
+    },
+    "hxhLGCguRO0_chunk_034_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_034",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:28:42.984485"
+    },
+    "hxhLGCguRO0_chunk_150_google": {
+      "video_id": "hxhLGCguRO0_chunk_150",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:28:44.588622"
+    },
+    "hxhLGCguRO0_chunk_150_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_150",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:29:01.422752"
+    },
+    "hxhLGCguRO0_chunk_019_google": {
+      "video_id": "hxhLGCguRO0_chunk_019",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:29:03.834745"
+    },
+    "hxhLGCguRO0_chunk_019_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_019",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:29:29.585840"
+    },
+    "hxhLGCguRO0_chunk_026_google": {
+      "video_id": "hxhLGCguRO0_chunk_026",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:29:30.914911"
+    },
+    "hxhLGCguRO0_chunk_026_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_026",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:29:48.113797"
+    },
+    "hxhLGCguRO0_chunk_146_google": {
+      "video_id": "hxhLGCguRO0_chunk_146",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:29:49.433250"
+    },
+    "hxhLGCguRO0_chunk_146_whisper": {
+      "video_id": "hxhLGCguRO0_chunk_146",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-08-30T01:30:06.304450"
     }
   },
-  "last_updated": "2025-08-25T23:05:45.251450"
+  "last_updated": "2025-08-30T01:30:06.309739"
 }
