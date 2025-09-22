@@ -9,9 +9,7 @@
 
 set -e  # Exit on any error
 
-# Configuration
-CURRENT_REPO="/Users/darklord/Research/Audio Visual/Code/bengali-speech-audio-visual-dataset"
-SYNCNET_REPO="/Users/darklord/Research/Audio Visual/Code/syncnet_python"
+# Configuration - Use command line provided paths
 DEFAULT_MAX_WORKERS=8
 DEFAULT_MIN_CHUNK_DURATION=2
 
@@ -53,12 +51,6 @@ check_dependencies() {
         exit 1
     fi
     
-    if [ ! -d "$SYNCNET_REPO" ]; then
-        print_error "SyncNet repository not found at: $SYNCNET_REPO"
-        print_error "Please ensure the SyncNet repository is cloned and accessible"
-        exit 1
-    fi
-    
     print_success "Dependencies check passed"
 }
 
@@ -70,6 +62,8 @@ usage() {
     echo "  video_id                Video ID (e.g., efhkN7e8238)"
     echo ""
     echo "Options:"
+    echo "  --current-repo PATH     Path to current repository (auto-detected if not provided)"
+    echo "  --syncnet-repo PATH     Path to SyncNet repository (required)"
     echo "  --max-workers NUM       Maximum number of workers (default: $DEFAULT_MAX_WORKERS)"
     echo "  --min-chunk-duration NUM Minimum chunk duration in seconds (default: $DEFAULT_MIN_CHUNK_DURATION)"
     echo "  --preset PRESET         SyncNet preset (low/medium/high, default: high)"
@@ -79,12 +73,21 @@ usage() {
     echo "  --skip-step4            Skip step 4 (transcription)"
     echo "  --help                  Show this help message"
     echo ""
-    echo "Example:"
-    echo "  $0 efhkN7e8238 --max-workers 8 --preset high"
+    echo "Examples:"
+    echo "  # Mac:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /Users/darklord/Research/Audio\\ Visual/Code/syncnet_python"
+    echo ""
+    echo "  # WSL:"  
+    echo "  $0 efhkN7e8238 --syncnet-repo /home/\$USER/thesis/syncnet_python"
+    echo ""
+    echo "  # With custom current repo:"
+    echo "  $0 efhkN7e8238 --current-repo /path/to/bengali-dataset --syncnet-repo /path/to/syncnet"
 }
 
 # Parse command line arguments
 VIDEO_ID=""
+CURRENT_REPO=""
+SYNCNET_REPO=""
 MAX_WORKERS=$DEFAULT_MAX_WORKERS
 MIN_CHUNK_DURATION=$DEFAULT_MIN_CHUNK_DURATION
 PRESET="high"
@@ -95,9 +98,63 @@ SKIP_STEP4=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
+        --current-repo)
+            CURRENT_REPO="$2"
+            shift 2
+            ;;
+        --syncnet-repo)
+            SYNCNET_REPO="$2"
+            shift 2
+            ;;
         --max-workers)
             MAX_WORKERS="$2"
             shift 2
+            ;;
+        --min-chunk-duration)
+            MIN_CHUNK_DURATION="$2"
+            shift 2
+            ;;
+        --preset)
+            PRESET="$2"
+            shift 2
+            ;;
+        --skip-step1)
+            SKIP_STEP1=true
+            shift
+            ;;
+        --skip-step2)
+            SKIP_STEP2=true
+            shift
+            ;;
+        --skip-step3)
+            SKIP_STEP3=true
+            shift
+            ;;
+        --skip-step4)
+            SKIP_STEP4=true
+            shift
+            ;;
+        --help)
+            usage
+            exit 0
+            ;;
+        -*)
+            print_error "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+        *)
+            if [ -z "$VIDEO_ID" ]; then
+                VIDEO_ID="$1"
+            else
+                print_error "Multiple video IDs specified. Only one is allowed."
+                usage
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
             ;;
         --min-chunk-duration)
             MIN_CHUNK_DURATION="$2"
@@ -152,6 +209,39 @@ if [ -z "$VIDEO_ID" ]; then
     exit 1
 fi
 
+# Set default current repo if not provided
+if [ -z "$CURRENT_REPO" ]; then
+    CURRENT_REPO="$(pwd)"
+    print_status "Using current directory as repo: $CURRENT_REPO"
+fi
+
+# Validate SyncNet repo is provided
+if [ -z "$SYNCNET_REPO" ]; then
+    print_error "SyncNet repository path is required"
+    print_error "Please specify --syncnet-repo PATH"
+    print_error ""
+    print_error "Common locations:"
+    print_error "  Mac: /Users/\$USER/Research/Audio\\ Visual/Code/syncnet_python"
+    print_error "  WSL: /home/\$USER/thesis/syncnet_python"
+    usage
+    exit 1
+fi
+
+# Validate paths exist
+if [ ! -d "$CURRENT_REPO" ]; then
+    print_error "Current repository path does not exist: $CURRENT_REPO"
+    exit 1
+fi
+
+if [ ! -d "$SYNCNET_REPO" ]; then
+    print_error "SyncNet repository path does not exist: $SYNCNET_REPO"
+    exit 1
+fi
+
+# Convert to absolute paths
+CURRENT_REPO="$(realpath "$CURRENT_REPO")"
+SYNCNET_REPO="$(realpath "$SYNCNET_REPO")"
+
 # Validate numeric arguments
 if ! [[ "$MAX_WORKERS" =~ ^[0-9]+$ ]] || [ "$MAX_WORKERS" -lt 1 ]; then
     print_error "max-workers must be a positive integer"
@@ -174,6 +264,8 @@ print_status "==================================================================
 print_status "Bengali Speech Audio-Visual Dataset - Complete Processing Pipeline"
 print_status "==================================================================="
 print_status "Video ID: $VIDEO_ID"
+print_status "Current Repository: $CURRENT_REPO"
+print_status "SyncNet Repository: $SYNCNET_REPO"
 print_status "Max Workers: $MAX_WORKERS"
 print_status "Min Chunk Duration: ${MIN_CHUNK_DURATION}s"
 print_status "SyncNet Preset: $PRESET"
@@ -256,8 +348,28 @@ if [ "$SKIP_STEP2" = false ]; then
         --max_worker "$MAX_WORKERS"; then
         print_success "Step 2 completed: SyncNet filtering completed"
         print_success "Results available in: $SYNCNET_OUTPUT_DIR"
+        
+        # Check if any good quality videos were produced
+        GOOD_QUALITY_DIR="$SYNCNET_OUTPUT_DIR/good_quality"
+        if [ -d "$GOOD_QUALITY_DIR" ]; then
+            GOOD_COUNT=$(find "$GOOD_QUALITY_DIR" -name "*.mp4" -o -name "*.avi" | wc -l)
+            if [ "$GOOD_COUNT" -eq 0 ]; then
+                print_warning "No good quality videos found after SyncNet filtering"
+                print_warning "All videos were filtered out due to poor audio-visual synchronization"
+                print_warning "You may want to:"
+                print_warning "  - Use a lower preset (medium or low instead of high)"
+                print_warning "  - Check the original video quality"
+                print_warning "  - Verify audio-visual alignment in the source"
+            else
+                print_success "Found $GOOD_COUNT good quality video(s) after filtering"
+            fi
+        fi
     else
         print_error "Step 2 failed: SyncNet filtering failed"
+        print_error "This might be due to:"
+        print_error "  - Python library compatibility issues (scenedetect/numpy)"
+        print_error "  - Missing dependencies in SyncNet environment"
+        print_error "  - Video format compatibility issues"
         exit 1
     fi
     
@@ -275,12 +387,25 @@ if [ "$SKIP_STEP3" = false ]; then
     GOOD_QUALITY_DIR="${SYNCNET_OUTPUT_DIR}/good_quality"
     ORGANIZED_OUTPUT_DIR="${VIDEO_ID}"
     
-    # Check if good_quality directory exists
+    # Check if good_quality directory exists and has content
     if [ ! -d "$GOOD_QUALITY_DIR" ]; then
         print_error "Good quality directory not found: $GOOD_QUALITY_DIR"
         print_error "Please run step 2 first or use --skip-step2 if SyncNet results already exist"
         exit 1
     fi
+    
+    GOOD_COUNT=$(find "$GOOD_QUALITY_DIR" -name "*.mp4" -o -name "*.avi" | wc -l)
+    if [ "$GOOD_COUNT" -eq 0 ]; then
+        print_error "No good quality videos found in: $GOOD_QUALITY_DIR"
+        print_error "SyncNet filtering removed all videos. Cannot proceed with organization."
+        print_error "Consider:"
+        print_error "  - Using a lower SyncNet preset (--preset medium or --preset low)"
+        print_error "  - Checking video quality and audio-visual synchronization"
+        print_error "  - Skipping SyncNet filtering (--skip-step2) if you want to process all chunks"
+        exit 1
+    fi
+    
+    print_status "Found $GOOD_COUNT good quality video(s) to organize"
     
     # Change to SyncNet directory to run directory preparation
     cd "$SYNCNET_REPO"
