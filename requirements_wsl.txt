@@ -1,0 +1,57 @@
+# WSL-Compatible Requirements for Bengali Speech Audio-Visual Dataset
+# ===================================================================
+# This file addresses WSL/Ubuntu compatibility issues, specifically:
+# 1. SyncNet scenedetect compatibility with newer numpy versions
+# 2. Python 3.13 compatibility 
+# 3. Missing system dependencies
+
+# Core Requirements (WSL Compatible Versions)
+ffmpeg-python==0.2.0
+moviepy==1.0.3
+pydub==0.25.1
+librosa==0.10.1
+soundfile==0.12.1
+audioread==3.0.1
+
+# Computer Vision (WSL Compatible)
+opencv-contrib-python==4.8.1.78
+opencv-python==4.8.1.78
+numpy==1.24.4           # Fixed for scenedetect compatibility
+pillow==10.0.1
+
+# Speech Recognition
+openai-whisper==20231117
+faster-whisper==1.0.3
+SpeechRecognition==3.10.3
+
+# PyTorch (CPU version for WSL - lighter)
+torch==2.1.2+cpu
+torchaudio==2.1.2+cpu
+--find-links https://download.pytorch.org/whl/torch_stable.html
+
+# SyncNet Dependencies (Compatible Versions)
+scenedetect[opencv]==0.6.2  # Fixed version for numpy compatibility
+
+# Data Processing
+pandas==2.1.4
+scipy==1.11.4
+jiwer==3.0.3
+editdistance==0.6.2
+
+# Utilities
+tqdm==4.66.1
+coloredlogs==15.0.1
+yt-dlp==2023.12.30
+PyYAML==6.0.1
+python-dotenv==1.0.0
+requests==2.31.0
+
+# WSL-specific fixes
+# Note: Install these system packages first:
+# sudo apt-get update
+# sudo apt-get install -y python3-dev portaudio19-dev python3-pyaudio
+# sudo apt-get install -y libsndfile1-dev libportaudio2 libportaudiocpp0
+
+# Audio processing (WSL compatible)
+noisereduce==2.0.1
+PyAudio==0.2.13

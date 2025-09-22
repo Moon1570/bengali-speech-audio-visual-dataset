@@ -19,20 +19,75 @@ print_success() {
     echo -e "${GREEN}[SUCCESS]${NC} $1"
 }
 
-# Check if video ID is provided
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 <video_id>"
-    echo "Example: $0 efhkN7e8238"
+# Check if video ID and SyncNet repo are provided
+if [ $# -lt 3 ]; then
+    echo "Usage: $0 <video_id> --syncnet-repo <syncnet_repo_path>"
+    echo ""
+    echo "Examples:"
+    echo "  # Mac:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /Users/darklord/Research/Audio\\ Visual/Code/syncnet_python"
+    echo ""
+    echo "  # WSL:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /home/\$USER/thesis/syncnet_python"
     exit 1
 fi
 
 VIDEO_ID=$1
-CURRENT_REPO="/Users/darklord/Research/Audio Visual/Code/bengali-speech-audio-visual-dataset"
-SYNCNET_REPO="/Users/darklord/Research/Audio Visual/Code/syncnet_python"
 
-print_status "==================================="
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --syncnet-repo)
+            SYNCNET_REPO="$2"
+            shift 2
+            ;;
+        --current-repo)
+            CURRENT_REPO="$2"
+            shift 2
+            ;;
+        -*)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+        *)
+            # Skip video ID (already captured)
+            shift
+            ;;
+    esac
+done
+
+# Set default current repo if not provided
+if [ -z "$CURRENT_REPO" ]; then
+    CURRENT_REPO="$(pwd)"
+fi
+
+# Validate SyncNet repo is provided
+if [ -z "$SYNCNET_REPO" ]; then
+    echo "Error: --syncnet-repo is required"
+    echo "Please specify the path to your SyncNet repository"
+    exit 1
+fi
+
+# Validate paths exist
+if [ ! -d "$CURRENT_REPO" ]; then
+    echo "Error: Current repository path does not exist: $CURRENT_REPO"
+    exit 1
+fi
+
+if [ ! -d "$SYNCNET_REPO" ]; then
+    echo "Error: SyncNet repository path does not exist: $SYNCNET_REPO"
+    exit 1
+fi
+
+# Convert to absolute paths
+CURRENT_REPO="$(realpath "$CURRENT_REPO")"
+SYNCNET_REPO="$(realpath "$SYNCNET_REPO")"
+
+print_status "==========================================="
 print_status "Quick Pipeline for Video: $VIDEO_ID"
-print_status "==================================="
+print_status "Current Repository: $CURRENT_REPO"
+print_status "SyncNet Repository: $SYNCNET_REPO"
+print_status "==========================================="
 
 cd "$CURRENT_REPO"
 

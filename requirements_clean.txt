@@ -1,0 +1,65 @@
+# Bengali Speech Audio-Visual Dataset - Essential Requirements
+# ===========================================================
+# This file contains only the essential packages needed for the project
+# Tested and compatible with Python 3.9-3.13, including WSL environments
+
+# Core Audio/Video Processing
+ffmpeg-python==0.2.0
+moviepy==1.0.3
+pydub==0.25.1
+librosa==0.10.2
+soundfile==0.12.1
+audioread==3.0.1
+
+# Computer Vision
+opencv-contrib-python==4.10.0.84
+opencv-python==4.10.0.84
+numpy==1.24.4   # Fixed version for compatibility
+pillow==10.4.0
+
+# Speech Recognition & NLP
+openai-whisper==20231117
+faster-whisper==1.0.3
+SpeechRecognition==3.10.4
+BanglaSpeech2Text==1.1.0
+
+# Google Speech API (optional - requires credentials)
+google-cloud-speech
+
+# Machine Learning & Audio Analysis
+torch==2.3.1
+torchaudio==2.3.1
+transformers==4.44.2
+jiwer==3.0.4
+editdistance==0.6.2
+
+# Noise Reduction
+noisereduce==3.0.2
+
+# Video/Image Processing Utilities
+imageio==2.37.0
+imageio-ffmpeg==0.5.1
+
+# Data Processing
+pandas==2.2.2
+scipy==1.13.1
+
+# Progress & Logging
+tqdm==4.66.4
+coloredlogs==15.0.1
+
+# File Handling & Downloads
+yt-dlp==2024.8.6
+
+# Configuration & Utilities
+PyYAML==6.0.2
+python-dotenv==1.0.1
+requests==2.32.3
+click==8.1.7
+
+# Development & Code Quality (optional)
+# ruff==0.6.3
+
+# Note: scenedetect removed due to compatibility issues with newer numpy
+# If SyncNet functionality is needed, consider using an alternative or 
+# pinning to older numpy version in a separate environment
