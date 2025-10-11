@@ -46,12 +46,22 @@ command_exists() {
 check_dependencies() {
     print_status "Checking dependencies..."
     
-    if ! command_exists python; then
+    # Check for virtual environment
+    if [ -d ".venv" ]; then
+        print_status "Activating virtual environment (.venv)..."
+        source .venv/bin/activate
+        PYTHON_CMD="python"
+    elif command_exists python3; then
+        PYTHON_CMD="python3"
+    elif command_exists python; then
+        PYTHON_CMD="python"
+    else
         print_error "Python is not installed or not in PATH"
+        print_error "Please install Python 3.8+ or activate your virtual environment"
         exit 1
     fi
     
-    print_success "Dependencies check passed"
+    print_success "Dependencies check passed (using: $PYTHON_CMD)"
 }
 
 # Function to display usage
@@ -67,21 +77,40 @@ usage() {
     echo "  --max-workers NUM       Maximum number of workers (default: $DEFAULT_MAX_WORKERS)"
     echo "  --min-chunk-duration NUM Minimum chunk duration in seconds (default: $DEFAULT_MIN_CHUNK_DURATION)"
     echo "  --preset PRESET         SyncNet preset (low/medium/high, default: high)"
+    echo ""
+    echo "Audio Processing Options:"
+    echo "  --reduce-noise          Enable noise reduction (spectral gating)"
+    echo "  --amplify-speech        Enable speech amplification (RMS normalization)"
+    echo "  --no-filter-faces       Disable face filtering"
+    echo "  --no-refine-chunks      Disable chunk refinement"
+    echo ""
+    echo "Pipeline Control:"
     echo "  --skip-step1            Skip step 1 (chunk creation)"
     echo "  --skip-step2            Skip step 2 (SyncNet filtering)"
     echo "  --skip-step3            Skip step 3 (directory organization)"
     echo "  --skip-step4            Skip step 4 (transcription)"
+    echo "  --transcription-model MODEL  Transcription model (google/whisper/both, default: both)"
     echo "  --help                  Show this help message"
     echo ""
     echo "Examples:"
-    echo "  # Mac:"
+    echo "  # Basic usage (Mac):"
     echo "  $0 efhkN7e8238 --syncnet-repo /Users/darklord/Research/Audio\\ Visual/Code/syncnet_python"
     echo ""
-    echo "  # WSL:"  
-    echo "  $0 efhkN7e8238 --syncnet-repo /home/\$USER/thesis/syncnet_python"
+    echo "  # With audio processing enabled:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --reduce-noise --amplify-speech"
     echo ""
-    echo "  # With custom current repo:"
-    echo "  $0 efhkN7e8238 --current-repo /path/to/bengali-dataset --syncnet-repo /path/to/syncnet"
+    echo "  # Without face filtering and chunk refinement:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --no-filter-faces --no-refine-chunks"
+    echo ""
+    echo "  # Google-only transcription:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --transcription-model google"
+    echo ""
+    echo "  # WSL with custom settings:"  
+    echo "  $0 efhkN7e8238 --syncnet-repo /home/\$USER/thesis/syncnet_python --preset medium --reduce-noise"
+    echo ""
+    echo "  # Full control example:"
+    echo "  $0 efhkN7e8238 --current-repo /path/to/bengali-dataset --syncnet-repo /path/to/syncnet \\"
+    echo "     --reduce-noise --amplify-speech --max-workers 16 --min-chunk-duration 1.5 --preset high --transcription-model google"
 }
 
 # Parse command line arguments
@@ -91,6 +120,11 @@ SYNCNET_REPO=""
 MAX_WORKERS=$DEFAULT_MAX_WORKERS
 MIN_CHUNK_DURATION=$DEFAULT_MIN_CHUNK_DURATION
 PRESET="high"
+TRANSCRIPTION_MODEL="both"
+REDUCE_NOISE=false
+AMPLIFY_SPEECH=false
+FILTER_FACES=true
+REFINE_CHUNKS=true
 SKIP_STEP1=false
 SKIP_STEP2=false
 SKIP_STEP3=false
@@ -118,6 +152,22 @@ while [[ $# -gt 0 ]]; do
             PRESET="$2"
             shift 2
             ;;
+        --reduce-noise)
+            REDUCE_NOISE=true
+            shift
+            ;;
+        --amplify-speech)
+            AMPLIFY_SPEECH=true
+            shift
+            ;;
+        --no-filter-faces)
+            FILTER_FACES=false
+            shift
+            ;;
+        --no-refine-chunks)
+            REFINE_CHUNKS=false
+            shift
+            ;;
         --skip-step1)
             SKIP_STEP1=true
             shift
@@ -134,51 +184,9 @@ while [[ $# -gt 0 ]]; do
             SKIP_STEP4=true
             shift
             ;;
-        --help)
-            usage
-            exit 0
-            ;;
-        -*)
-            print_error "Unknown option: $1"
-            usage
-            exit 1
-            ;;
-        *)
-            if [ -z "$VIDEO_ID" ]; then
-                VIDEO_ID="$1"
-            else
-                print_error "Multiple video IDs specified. Only one is allowed."
-                usage
-                exit 1
-            fi
-            shift
-            ;;
-    esac
-done
-            ;;
-        --min-chunk-duration)
-            MIN_CHUNK_DURATION="$2"
+        --transcription-model)
+            TRANSCRIPTION_MODEL="$2"
             shift 2
-            ;;
-        --preset)
-            PRESET="$2"
-            shift 2
-            ;;
-        --skip-step1)
-            SKIP_STEP1=true
-            shift
-            ;;
-        --skip-step2)
-            SKIP_STEP2=true
-            shift
-            ;;
-        --skip-step3)
-            SKIP_STEP3=true
-            shift
-            ;;
-        --skip-step4)
-            SKIP_STEP4=true
-            shift
             ;;
         --help)
             usage
@@ -259,6 +267,12 @@ if [[ ! "$PRESET" =~ ^(low|medium|high)$ ]]; then
     exit 1
 fi
 
+# Validate transcription model
+if [[ ! "$TRANSCRIPTION_MODEL" =~ ^(google|whisper|both)$ ]]; then
+    print_error "transcription-model must be one of: google, whisper, both"
+    exit 1
+fi
+
 # Start pipeline
 print_status "==================================================================="
 print_status "Bengali Speech Audio-Visual Dataset - Complete Processing Pipeline"
@@ -269,6 +283,13 @@ print_status "SyncNet Repository: $SYNCNET_REPO"
 print_status "Max Workers: $MAX_WORKERS"
 print_status "Min Chunk Duration: ${MIN_CHUNK_DURATION}s"
 print_status "SyncNet Preset: $PRESET"
+print_status "Transcription Model: $TRANSCRIPTION_MODEL"
+print_status ""
+print_status "Audio Processing Filters:"
+print_status "  - Noise Reduction: $([ "$REDUCE_NOISE" = true ] && echo "ENABLED" || echo "DISABLED")"
+print_status "  - Speech Amplification: $([ "$AMPLIFY_SPEECH" = true ] && echo "ENABLED" || echo "DISABLED")"
+print_status "  - Face Filtering: $([ "$FILTER_FACES" = true ] && echo "ENABLED" || echo "DISABLED")"
+print_status "  - Chunk Refinement: $([ "$REFINE_CHUNKS" = true ] && echo "ENABLED" || echo "DISABLED")"
 print_status "==================================================================="
 
 # Check dependencies
@@ -288,9 +309,35 @@ if [ "$SKIP_STEP1" = false ]; then
         exit 1
     fi
     
-    print_status "Running: python run_pipeline.py $VIDEO_FILE --filter-faces --refine-chunks --min-chunk-duration $MIN_CHUNK_DURATION"
+    # Build command with optional flags
+    CMD="$PYTHON_CMD run_pipeline.py \"$VIDEO_FILE\" --min-chunk-duration $MIN_CHUNK_DURATION"
     
-    if python run_pipeline.py "$VIDEO_FILE" --filter-faces --refine-chunks --min-chunk-duration "$MIN_CHUNK_DURATION"; then
+    # Add face filtering flags
+    if [ "$FILTER_FACES" = true ]; then
+        CMD="$CMD --filter-faces"
+    else
+        CMD="$CMD --no-filter-faces"
+    fi
+    
+    # Add chunk refinement flags
+    if [ "$REFINE_CHUNKS" = true ]; then
+        CMD="$CMD --refine-chunks"
+    else
+        CMD="$CMD --no-refine-chunks"
+    fi
+    
+    # Add audio processing flags (if supported by run_pipeline.py)
+    if [ "$REDUCE_NOISE" = true ]; then
+        CMD="$CMD --reduce-noise"
+    fi
+    
+    if [ "$AMPLIFY_SPEECH" = true ]; then
+        CMD="$CMD --amplify-speech"
+    fi
+    
+    print_status "Running: $CMD"
+    
+    if eval "$CMD"; then
         print_success "Step 1 completed: Chunks created in outputs/${VIDEO_ID}/"
     else
         print_error "Step 1 failed: Chunk creation failed"
@@ -339,9 +386,9 @@ if [ "$SKIP_STEP2" = false ]; then
     cd "$SYNCNET_REPO"
     
     print_status "Running SyncNet filtering with preset '$PRESET' and $MAX_WORKERS workers..."
-    print_status "Command: python filter_videos_by_sync_score.py --input_dir data/${VIDEO_ID} --output_dir results/${VIDEO_ID}/ --preset $PRESET --max_worker $MAX_WORKERS"
+    print_status "Command: $PYTHON_CMD filter_videos_by_sync_score.py --input_dir data/${VIDEO_ID} --output_dir results/${VIDEO_ID}/ --preset $PRESET --max_worker $MAX_WORKERS"
     
-    if python filter_videos_by_sync_score.py \
+    if $PYTHON_CMD filter_videos_by_sync_score.py \
         --input_dir "data/${VIDEO_ID}" \
         --output_dir "results/${VIDEO_ID}/" \
         --preset "$PRESET" \
@@ -411,12 +458,12 @@ if [ "$SKIP_STEP3" = false ]; then
     cd "$SYNCNET_REPO"
     
     print_status "Running directory organization..."
-    print_status "Command: python utils/directory_prepare.py --input_dir results/${VIDEO_ID}/good_quality --output_dir ${VIDEO_ID} --max_workers $MAX_WORKERS"
+    print_status "Command: $PYTHON_CMD utils/directory_prepare.py --input_dir results/${VIDEO_ID}/good_quality --output_dir ${VIDEO_ID} --max_workers $MAX_WORKERS"
     
     # Note: This assumes the directory_prepare.py script exists in the SyncNet repo
     # If it doesn't exist, we'll need to create or locate this script
     if [ -f "utils/directory_prepare.py" ]; then
-        if python utils/directory_prepare.py \
+        if $PYTHON_CMD utils/directory_prepare.py \
             --input_dir "results/${VIDEO_ID}/good_quality" \
             --output_dir "$VIDEO_ID" \
             --max_workers "$MAX_WORKERS"; then
@@ -470,12 +517,12 @@ if [ "$SKIP_STEP4" = false ]; then
         exit 1
     fi
     
-    print_status "Running transcription with both Google API and Whisper..."
-    print_status "Command: python run_transcription_pipeline_modular.py --path $VIDEO_NORMAL_DIR --model both --batch"
+    print_status "Running transcription with model: $TRANSCRIPTION_MODEL..."
+    print_status "Command: $PYTHON_CMD run_transcription_pipeline_modular.py --path $VIDEO_NORMAL_DIR --model $TRANSCRIPTION_MODEL --batch"
     
-    if python run_transcription_pipeline_modular.py \
+    if $PYTHON_CMD run_transcription_pipeline_modular.py \
         --path "$VIDEO_NORMAL_DIR" \
-        --model both \
+        --model "$TRANSCRIPTION_MODEL" \
         --batch; then
         print_success "Step 4 completed: Transcription completed"
         print_success "Transcription results should be available in the appropriate output directories"

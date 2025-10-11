@@ -105,6 +105,11 @@ def main():
         default=1.0,
         help="Minimum duration for refined chunks (default: 1.0)"
     )
+    parser.add_argument(
+        "--reduce-noise",
+        action="store_true",
+        help="Enable noise reduction (spectral gating) during audio processing"
+    )
 
     args = parser.parse_args()
     video_path = args.video_path
@@ -137,7 +142,8 @@ def main():
             refine_chunks=refine_chunks,
             refine_sample_rate=args.refine_sample_rate,
             min_face_duration=args.min_face_duration,
-            min_chunk_duration=args.min_chunk_duration
+            min_chunk_duration=args.min_chunk_duration,
+            apply_noise_reduction=args.reduce_noise
         )
 
         for _ in tqdm(range(len(timestamps)), desc="Creating chunks", unit="chunk"):
