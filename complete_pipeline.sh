@@ -84,6 +84,12 @@ usage() {
     echo "  --no-filter-faces       Disable face filtering"
     echo "  --no-refine-chunks      Disable chunk refinement"
     echo ""
+    echo "Silence Detection Options:"
+    echo "  --silence-preset PRESET Silence detection preset (default: balanced)"
+    echo "                          Options: very_sensitive, sensitive, balanced, conservative, very_conservative"
+    echo "  --custom-silence-thresh NUM  Custom silence threshold in dBFS (e.g., -40.0)"
+    echo "  --custom-min-silence NUM     Custom minimum silence length in ms (e.g., 500)"
+    echo ""
     echo "Pipeline Control:"
     echo "  --skip-step1            Skip step 1 (chunk creation)"
     echo "  --skip-step2            Skip step 2 (SyncNet filtering)"
@@ -105,12 +111,19 @@ usage() {
     echo "  # Google-only transcription:"
     echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --transcription-model google"
     echo ""
+    echo "  # More sensitive silence detection (more chunks):"
+    echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --silence-preset sensitive"
+    echo ""
+    echo "  # Custom silence threshold:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --custom-silence-thresh -35.0 --custom-min-silence 400"
+    echo ""
     echo "  # WSL with custom settings:"  
     echo "  $0 efhkN7e8238 --syncnet-repo /home/\$USER/thesis/syncnet_python --preset medium --reduce-noise"
     echo ""
     echo "  # Full control example:"
     echo "  $0 efhkN7e8238 --current-repo /path/to/bengali-dataset --syncnet-repo /path/to/syncnet \\"
-    echo "     --reduce-noise --amplify-speech --max-workers 16 --min-chunk-duration 1.5 --preset high --transcription-model google"
+    echo "     --silence-preset sensitive --reduce-noise --amplify-speech --max-workers 16 \\"
+    echo "     --min-chunk-duration 1.5 --preset high --transcription-model google"
 }
 
 # Parse command line arguments
@@ -121,6 +134,9 @@ MAX_WORKERS=$DEFAULT_MAX_WORKERS
 MIN_CHUNK_DURATION=$DEFAULT_MIN_CHUNK_DURATION
 PRESET="high"
 TRANSCRIPTION_MODEL="both"
+SILENCE_PRESET="balanced"
+CUSTOM_SILENCE_THRESH=""
+CUSTOM_MIN_SILENCE=""
 REDUCE_NOISE=false
 AMPLIFY_SPEECH=false
 FILTER_FACES=true
@@ -186,6 +202,18 @@ while [[ $# -gt 0 ]]; do
             ;;
         --transcription-model)
             TRANSCRIPTION_MODEL="$2"
+            shift 2
+            ;;
+        --silence-preset)
+            SILENCE_PRESET="$2"
+            shift 2
+            ;;
+        --custom-silence-thresh)
+            CUSTOM_SILENCE_THRESH="$2"
+            shift 2
+            ;;
+        --custom-min-silence)
+            CUSTOM_MIN_SILENCE="$2"
             shift 2
             ;;
         --help)
@@ -273,6 +301,27 @@ if [[ ! "$TRANSCRIPTION_MODEL" =~ ^(google|whisper|both)$ ]]; then
     exit 1
 fi
 
+# Validate silence preset
+if [[ ! "$SILENCE_PRESET" =~ ^(very_sensitive|sensitive|balanced|conservative|very_conservative)$ ]]; then
+    print_error "silence-preset must be one of: very_sensitive, sensitive, balanced, conservative, very_conservative"
+    exit 1
+fi
+
+# Validate custom silence parameters if provided
+if [ -n "$CUSTOM_SILENCE_THRESH" ]; then
+    if ! [[ "$CUSTOM_SILENCE_THRESH" =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
+        print_error "custom-silence-thresh must be a number (e.g., -40.0)"
+        exit 1
+    fi
+fi
+
+if [ -n "$CUSTOM_MIN_SILENCE" ]; then
+    if ! [[ "$CUSTOM_MIN_SILENCE" =~ ^[0-9]+$ ]]; then
+        print_error "custom-min-silence must be a positive integer (milliseconds)"
+        exit 1
+    fi
+fi
+
 # Start pipeline
 print_status "==================================================================="
 print_status "Bengali Speech Audio-Visual Dataset - Complete Processing Pipeline"
@@ -284,6 +333,11 @@ print_status "Max Workers: $MAX_WORKERS"
 print_status "Min Chunk Duration: ${MIN_CHUNK_DURATION}s"
 print_status "SyncNet Preset: $PRESET"
 print_status "Transcription Model: $TRANSCRIPTION_MODEL"
+print_status ""
+print_status "Silence Detection Settings:"
+print_status "  - Preset: $SILENCE_PRESET"
+[ -n "$CUSTOM_SILENCE_THRESH" ] && print_status "  - Custom Threshold: ${CUSTOM_SILENCE_THRESH} dBFS"
+[ -n "$CUSTOM_MIN_SILENCE" ] && print_status "  - Custom Min Silence: ${CUSTOM_MIN_SILENCE}ms"
 print_status ""
 print_status "Audio Processing Filters:"
 print_status "  - Noise Reduction: $([ "$REDUCE_NOISE" = true ] && echo "ENABLED" || echo "DISABLED")"
@@ -310,7 +364,16 @@ if [ "$SKIP_STEP1" = false ]; then
     fi
     
     # Build command with optional flags
-    CMD="$PYTHON_CMD run_pipeline.py \"$VIDEO_FILE\" --min-chunk-duration $MIN_CHUNK_DURATION"
+    CMD="$PYTHON_CMD run_pipeline.py \"$VIDEO_FILE\" --min-chunk-duration $MIN_CHUNK_DURATION --silence-preset $SILENCE_PRESET"
+    
+    # Add silence detection custom parameters
+    if [ -n "$CUSTOM_SILENCE_THRESH" ]; then
+        CMD="$CMD --custom-silence-thresh $CUSTOM_SILENCE_THRESH"
+    fi
+    
+    if [ -n "$CUSTOM_MIN_SILENCE" ]; then
+        CMD="$CMD --custom-min-silence $CUSTOM_MIN_SILENCE"
+    fi
     
     # Add face filtering flags
     if [ "$FILTER_FACES" = true ]; then
@@ -326,7 +389,7 @@ if [ "$SKIP_STEP1" = false ]; then
         CMD="$CMD --no-refine-chunks"
     fi
     
-    # Add audio processing flags (if supported by run_pipeline.py)
+    # Add audio processing flags
     if [ "$REDUCE_NOISE" = true ]; then
         CMD="$CMD --reduce-noise"
     fi

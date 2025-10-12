@@ -283,3 +283,4 @@ venv/
 .env
 .python-version
 
+experiments/*
