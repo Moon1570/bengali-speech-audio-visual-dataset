@@ -74,6 +74,7 @@ usage() {
     echo "Options:"
     echo "  --current-repo PATH     Path to current repository (auto-detected if not provided)"
     echo "  --syncnet-repo PATH     Path to SyncNet repository (required)"
+    echo "  --output-dir PATH       Custom output directory (default: experiments/experiment_data)"
     echo "  --max-workers NUM       Maximum number of workers (default: $DEFAULT_MAX_WORKERS)"
     echo "  --min-chunk-duration NUM Minimum chunk duration in seconds (default: $DEFAULT_MIN_CHUNK_DURATION)"
     echo "  --preset PRESET         SyncNet preset (low/medium/high, default: high)"
@@ -111,6 +112,9 @@ usage() {
     echo "  # Google-only transcription:"
     echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --transcription-model google"
     echo ""
+    echo "  # Custom output directory:"
+    echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --output-dir /path/to/output"
+    echo ""
     echo "  # More sensitive silence detection (more chunks):"
     echo "  $0 efhkN7e8238 --syncnet-repo /path/to/syncnet --silence-preset sensitive"
     echo ""
@@ -130,6 +134,7 @@ usage() {
 VIDEO_ID=""
 CURRENT_REPO=""
 SYNCNET_REPO=""
+OUTPUT_DIR="experiments/experiment_data"
 MAX_WORKERS=$DEFAULT_MAX_WORKERS
 MIN_CHUNK_DURATION=$DEFAULT_MIN_CHUNK_DURATION
 PRESET="high"
@@ -154,6 +159,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --syncnet-repo)
             SYNCNET_REPO="$2"
+            shift 2
+            ;;
+        --output-dir)
+            OUTPUT_DIR="$2"
             shift 2
             ;;
         --max-workers)
@@ -546,17 +555,17 @@ if [ "$SKIP_STEP3" = false ]; then
         print_status "Copying organized videos back to main repository..."
         cd "$CURRENT_REPO"
         
-        # Create experiments/experiment_data directory if it doesn't exist
-        mkdir -p "experiments/experiment_data"
+        # Create output directory if it doesn't exist
+        mkdir -p "${OUTPUT_DIR}"
         
-        # Copy the organized directory
-        if [ -d "experiments/experiment_data/${VIDEO_ID}" ]; then
-            print_warning "Removing existing organized data: experiments/experiment_data/${VIDEO_ID}"
-            rm -rf "experiments/experiment_data/${VIDEO_ID}"
+        # Copy organized videos back to main repository
+        if [ -d "${OUTPUT_DIR}/${VIDEO_ID}" ]; then
+            print_warning "Removing existing organized data: ${OUTPUT_DIR}/${VIDEO_ID}"
+            rm -rf "${OUTPUT_DIR}/${VIDEO_ID}"
         fi
         
-        cp -r "${SYNCNET_REPO}/${VIDEO_ID}" "experiments/experiment_data/"
-        print_success "Organized videos copied to: experiments/experiment_data/${VIDEO_ID}"
+        cp -r "${SYNCNET_REPO}/${VIDEO_ID}" "${OUTPUT_DIR}/"
+        print_success "Organized videos copied to: ${OUTPUT_DIR}/${VIDEO_ID}"
     else
         print_error "Organized output directory not found: ${SYNCNET_REPO}/${VIDEO_ID}"
         exit 1
@@ -573,7 +582,7 @@ if [ "$SKIP_STEP4" = false ]; then
     cd "$CURRENT_REPO"
     
     # Check if the organized video directory exists
-    VIDEO_NORMAL_DIR="experiments/experiment_data/${VIDEO_ID}/video_normal"
+    VIDEO_NORMAL_DIR="${OUTPUT_DIR}/${VIDEO_ID}/video_normal"
     if [ ! -d "$VIDEO_NORMAL_DIR" ]; then
         print_error "Video normal directory not found: $VIDEO_NORMAL_DIR"
         print_error "Please run step 3 first or use --skip-step3 if organized videos already exist"
@@ -631,6 +640,6 @@ print_status ""
 print_status "Output locations:"
 print_status "  - Original chunks: outputs/${VIDEO_ID}/"
 print_status "  - SyncNet results: ${SYNCNET_REPO}/results/${VIDEO_ID}/"
-print_status "  - Organized videos: experiments/experiment_data/${VIDEO_ID}/"
+print_status "  - Organized videos: ${OUTPUT_DIR}/${VIDEO_ID}/"
 print_status "  - Transcription results: Check transcripts_* folders in experiment_data"
 print_status "==================================================================="
