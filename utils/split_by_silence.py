@@ -62,10 +62,11 @@ def merge_close_chunks(timestamps, min_gap=0.25):
     merged.append((prev_start, prev_end))  # Don't forget the last chunk
     return merged
 
-def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
-                      keep_silence=100, max_chunk_len=10000, filter_faces=True,
+def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=700,
+                      keep_silence=150, max_chunk_len=20000, filter_faces=True,
                       face_threshold=0.3, sample_interval=0.5, refine_chunks=True,
-                      refine_sample_rate=0.1, min_face_duration=0.5, min_chunk_duration=1.0):
+                      refine_sample_rate=0.03, min_face_duration=0.5, min_chunk_duration=1.0,
+                      max_face_gap=0.1, apply_noise_reduction=False):
     chunks_dir = os.path.join(output_dir, "chunks")
     audio_out = os.path.join(chunks_dir, "audio")
     video_out = os.path.join(chunks_dir, "video")
@@ -73,16 +74,22 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
     os.makedirs(video_out, exist_ok=True)
 
     # Load and preprocess audio
-    print("Loading and denoising audio...")
+    print("Loading audio...")
     audio_seg = AudioSegment.from_wav(audio_path)
-    audio_seg = reduce_noise(audio_seg)
+    
+    if apply_noise_reduction:
+        print("Applying noise reduction...")
+        audio_seg = reduce_noise(audio_seg)
+    else:
+        print("Noise reduction disabled")
 
     print("Estimating silence threshold...")
     dynamic_thresh = dynamic_silence_thresh(audio_seg)
     
     # Use a more reasonable silence threshold (not too low)
     # If dynamic threshold is too low, use a higher default
-    silence_thresh = max(dynamic_thresh, audio_seg.dBFS - 25)  # More sensitive for sentence breaks
+    # Using -18 to -20 dB difference to focus on sentence-level pauses, not word-level
+    silence_thresh = max(dynamic_thresh, audio_seg.dBFS - 18)  # Less sensitive for sentence breaks only
     
     print(f"Dynamic threshold: {dynamic_thresh:.2f} dBFS")
     print(f"Using silence threshold: {silence_thresh:.2f} dBFS")
@@ -146,7 +153,8 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
             video_path, timestamps,
             sample_rate=refine_sample_rate,
             min_face_duration=min_face_duration,
-            min_chunk_duration=min_chunk_duration
+            min_chunk_duration=min_chunk_duration,
+            max_gap=max_face_gap
         )
         
         # Save refinement previews
@@ -175,11 +183,30 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=200,
         return []
 
     # Export audio and video
+    import subprocess
     video = VideoFileClip(video_path)
     for i, (start, end) in enumerate(timestamps):
         print(f"Saving chunk {i:03d} [{start:.2f}s - {end:.2f}s]...")
-        chunk_audio = audio_seg[int(start * 1000):int(end * 1000)]
-        chunk_audio.export(os.path.join(audio_out, f"chunk_{i:03d}.wav"), format="wav")
+        
+        # Extract audio directly from original video using ffmpeg (lossless)
+        audio_output = os.path.join(audio_out, f"chunk_{i:03d}.wav")
+        duration = end - start
+        
+        # Use ffmpeg to extract audio without re-encoding quality loss
+        ffmpeg_audio_cmd = [
+            'ffmpeg', '-y',
+            '-ss', str(start),
+            '-i', video_path,
+            '-t', str(duration),
+            '-vn',  # No video
+            '-acodec', 'pcm_s16le',  # High quality PCM audio
+            '-ar', '44100',  # Sample rate
+            '-ac', '2',  # Stereo
+            audio_output
+        ]
+        subprocess.run(ffmpeg_audio_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        
+        # Extract video chunk
         subclip = video.subclip(start, end)
         subclip.write_videofile(
             os.path.join(video_out, f"chunk_{i:03d}.mp4"),

@@ -38,13 +38,14 @@ def analyze_face_timeline_in_chunk(video_path, start_time, end_time, sample_rate
     return face_timeline
 
 
-def find_face_segments(face_timeline, min_face_duration=0.5):
+def find_face_segments(face_timeline, min_face_duration=0.5, max_gap=0.3):
     """
-    Find continuous segments where faces are present.
+    Find continuous segments where faces are present, allowing small gaps.
     
     Args:
         face_timeline: List of (timestamp, has_face) tuples
         min_face_duration: Minimum duration for a face segment to be valid
+        max_gap: Maximum allowed gap without face (e.g., for blinks) in seconds
     
     Returns:
         List of (start_time, end_time) tuples for face segments
@@ -54,30 +55,42 @@ def find_face_segments(face_timeline, min_face_duration=0.5):
     
     face_segments = []
     current_start = None
+    last_face_time = None
     
     for i, (timestamp, has_face) in enumerate(face_timeline):
-        if has_face and current_start is None:
-            # Start of a face segment
-            current_start = timestamp
-        elif not has_face and current_start is not None:
-            # End of a face segment
-            duration = timestamp - current_start
-            if duration >= min_face_duration:
-                face_segments.append((current_start, timestamp))
-            current_start = None
+        if has_face:
+            if current_start is None:
+                # Start of a new face segment
+                current_start = timestamp
+                last_face_time = timestamp
+            else:
+                # Continue existing segment
+                last_face_time = timestamp
+        else:
+            # No face detected
+            if current_start is not None:
+                # Check if gap is too large
+                gap = timestamp - last_face_time
+                if gap > max_gap:
+                    # Gap is too large - end current segment
+                    duration = last_face_time - current_start
+                    if duration >= min_face_duration:
+                        face_segments.append((current_start, last_face_time))
+                    current_start = None
+                    last_face_time = None
+                # else: small gap, continue the segment
     
     # Handle case where chunk ends with faces
-    if current_start is not None:
-        last_timestamp = face_timeline[-1][0]
-        duration = last_timestamp - current_start
+    if current_start is not None and last_face_time is not None:
+        duration = last_face_time - current_start
         if duration >= min_face_duration:
-            face_segments.append((current_start, last_timestamp))
+            face_segments.append((current_start, last_face_time))
     
     return face_segments
 
 
 def refine_chunk_by_faces(video_path, start_time, end_time, sample_rate=0.1, 
-                         min_face_duration=0.5, min_chunk_duration=1.0):
+                         min_face_duration=0.5, min_chunk_duration=1.0, max_gap=0.3):
     """
     Refine a chunk to only include segments with faces.
     
@@ -88,6 +101,7 @@ def refine_chunk_by_faces(video_path, start_time, end_time, sample_rate=0.1,
         sample_rate: Sampling rate for face detection (seconds)
         min_face_duration: Minimum duration for face segments
         min_chunk_duration: Minimum duration for refined chunks
+        max_gap: Maximum gap without face to tolerate (seconds)
     
     Returns:
         List of refined (start_time, end_time) tuples with faces only
@@ -101,19 +115,38 @@ def refine_chunk_by_faces(video_path, start_time, end_time, sample_rate=0.1,
         print(f"    ❌ No timeline data - removing chunk")
         return []
     
-    # Find continuous face segments
-    face_segments = find_face_segments(face_timeline, min_face_duration)
+    # Find continuous face segments (allowing small gaps for blinks, etc.)
+    face_segments = find_face_segments(face_timeline, min_face_duration, max_gap)
     
     if not face_segments:
         print(f"    ❌ No face segments found - removing chunk")
         return []
     
-    # Filter segments by minimum duration
-    valid_segments = [(start, end) for start, end in face_segments 
-                     if (end - start) >= min_chunk_duration]
+    # Filter segments by minimum duration and validate face presence percentage
+    valid_segments = []
+    min_face_percentage = 0.95  # Require 95% face presence for benchmarking dataset
+    
+    for seg_start, seg_end in face_segments:
+        duration = seg_end - seg_start
+        if duration < min_chunk_duration:
+            continue
+            
+        # Calculate face presence percentage in this segment
+        segment_timeline = [(t, has_face) for t, has_face in face_timeline 
+                          if seg_start <= t <= seg_end]
+        
+        if segment_timeline:
+            faces_present = sum(1 for _, has_face in segment_timeline if has_face)
+            face_percentage = faces_present / len(segment_timeline)
+            
+            if face_percentage >= min_face_percentage:
+                valid_segments.append((seg_start, seg_end))
+            else:
+                print(f"      ⚠️  Segment {seg_start:.2f}s-{seg_end:.2f}s rejected: "
+                      f"only {face_percentage*100:.1f}% face presence (need {min_face_percentage*100:.0f}%)")
     
     if not valid_segments:
-        print(f"    ❌ No segments meet minimum duration - removing chunk")
+        print(f"    ❌ No segments meet quality requirements (95% face presence)")
         return []
     
     # Show refinement results
@@ -132,7 +165,7 @@ def refine_chunk_by_faces(video_path, start_time, end_time, sample_rate=0.1,
 
 def refine_all_chunks_by_faces(video_path, timestamps, sample_rate=0.1, 
                               min_face_duration=0.5, min_chunk_duration=1.0, 
-                              show_progress=True):
+                              max_gap=0.3, show_progress=True):
     """
     Refine all chunks to only include face segments.
     
@@ -142,6 +175,7 @@ def refine_all_chunks_by_faces(video_path, timestamps, sample_rate=0.1,
         sample_rate: Sampling rate for face detection (seconds)
         min_face_duration: Minimum duration for face segments
         min_chunk_duration: Minimum duration for refined chunks
+        max_gap: Maximum gap without face to tolerate (seconds)
         show_progress: Whether to show progress
     
     Returns:
@@ -149,7 +183,8 @@ def refine_all_chunks_by_faces(video_path, timestamps, sample_rate=0.1,
     """
     print(f"\n🎯 Refining {len(timestamps)} chunks to remove non-face segments...")
     print(f"Refinement parameters:")
-    print(f"  - Sample rate: {sample_rate}s")
+    print(f"  - Sample rate: {sample_rate}s (checking every {sample_rate}s)")
+    print(f"  - Max gap without face: {max_gap}s")
     print(f"  - Min face duration: {min_face_duration}s")
     print(f"  - Min chunk duration: {min_chunk_duration}s")
     
@@ -162,7 +197,7 @@ def refine_all_chunks_by_faces(video_path, timestamps, sample_rate=0.1,
         # Refine this chunk
         face_segments = refine_chunk_by_faces(
             video_path, start, end, sample_rate, 
-            min_face_duration, min_chunk_duration
+            min_face_duration, min_chunk_duration, max_gap
         )
         
         # Add all valid face segments

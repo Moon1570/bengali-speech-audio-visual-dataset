@@ -413,15 +413,29 @@ def save_transcripts_to_input_folder(video_info, model, original_file_path=None)
         logger.info(f"📊 Combined {valid_chunks} chunks into single file")
 
         # Also create the sibling transcripts_{model} directory for detailed chunks
-        # Prefer parent of video_dir if available so transcripts sit next to the pre-processed folder
+        # Determine the correct location for transcripts folder
         video_dir = video_info.get('video_dir')
+        
         if video_dir and os.path.exists(video_dir):
+            # Pre-processed directory: put transcripts at same level as video_dir
             parent_dir = os.path.dirname(video_dir)
             transcript_dir = os.path.join(parent_dir, f"transcripts_{model}")
         else:
-            # For raw/original file input, prefer the parent of the input folder
-            parent_of_input = os.path.dirname(input_folder)
-            transcript_dir = os.path.join(parent_of_input, f"transcripts_{model}")
+            # Batch processing of raw files in a directory:
+            # Put transcripts at the same level as the input folder
+            # Check if input_folder looks like it's part of a structured dataset
+            # (e.g., experiments/experiment_data/SSYouTubeonline/video_normal/)
+            if os.path.basename(input_folder).startswith('video_') or \
+               'video_normal' in input_folder or \
+               'video_cropped' in input_folder or \
+               'video_bbox' in input_folder:
+                # This is a video subfolder - put transcripts at parent level
+                parent_of_input = os.path.dirname(input_folder)
+                transcript_dir = os.path.join(parent_of_input, f"transcripts_{model}")
+            else:
+                # Regular folder - put transcripts as sibling
+                parent_of_input = os.path.dirname(input_folder) if input_folder != '.' else '.'
+                transcript_dir = os.path.join(parent_of_input, f"transcripts_{model}")
 
         os.makedirs(transcript_dir, exist_ok=True)
 
