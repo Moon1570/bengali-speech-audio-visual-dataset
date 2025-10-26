@@ -1,0 +1,93 @@
+# .dockerignore for parent directory build context
+# Place this in the parent directory: Research/Audio Visual/Code/
+
+# Python cache
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/*.so
+**/.Python
+**/*.pyc
+
+# Virtual environments
+**/.venv/
+**/venv/
+**/ENV/
+**/env/
+
+# IDEs
+**/.vscode/
+**/.idea/
+**/*.swp
+**/*.swo
+**/*~
+**/.DS_Store
+
+# Git
+**/.git/
+**/.gitignore
+**/.gitattributes
+
+# Logs
+**/*.log
+**/logs/
+
+# Temporary files
+**/tmp/
+**/temp/
+**/*.tmp
+**/*.bak
+
+# Test files
+**/test_*.py
+**/*_test.py
+**/tests/
+
+# Build artifacts
+**/build/
+**/dist/
+**/*.egg-info/
+
+# Jupyter
+**/*.ipynb
+**/.ipynb_checkpoints/
+
+# OS
+**/Thumbs.db
+**/Desktop.ini
+
+# Docker files (don't recursively include)
+**/Dockerfile
+**/docker-compose*.yml
+**/.dockerignore
+
+# Specific large directories to exclude
+bengali-speech-audio-visual-dataset/downloads/
+bengali-speech-audio-visual-dataset/outputs/
+bengali-speech-audio-visual-dataset/experiments/
+bengali-speech-audio-visual-dataset/sample_data/
+bengali-speech-audio-visual-dataset/denoised_audio/
+bengali-speech-audio-visual-dataset/amplified_denoised_audio/
+
+# SyncNet working directories (results are generated at runtime)
+syncnet_python/results/
+syncnet_python/SSYouTubeonline/
+syncnet_python/chunks/
+syncnet_python/data/chunks/
+syncnet_python/data/efhkN7e8238/
+syncnet_python/data/h9OrOkhODmY/
+syncnet_python/data/hxhLGCguRO0/
+syncnet_python/data/rcduE_ff314/
+syncnet_python/data/SSYouTubeonline/
+syncnet_python/data/test1/
+syncnet_python/data/video/
+syncnet_python/data/video_3/
+syncnet_python/data/work/pyavi/
+syncnet_python/data/work/pycrop/
+syncnet_python/data/work/pyframes/
+syncnet_python/data/work/pytmp/
+syncnet_python/data/work/pywork/
+
+# But KEEP the model file (don't exclude it)
+!syncnet_python/data/syncnet_v2.model
+!syncnet_python/data/work/pytorchmodels/syncnet_v2.model

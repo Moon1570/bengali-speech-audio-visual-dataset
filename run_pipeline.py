@@ -110,6 +110,24 @@ def main():
         action="store_true",
         help="Enable noise reduction (spectral gating) during audio processing"
     )
+    parser.add_argument(
+        "--silence-preset",
+        choices=["very_sensitive", "sensitive", "balanced", "conservative", "very_conservative"],
+        default="balanced",
+        help="Silence detection sensitivity preset (default: balanced). "
+             "very_sensitive: word-level, sensitive: phrase-level, balanced: sentence-level, "
+             "conservative: paragraph-level, very_conservative: major pauses only"
+    )
+    parser.add_argument(
+        "--custom-silence-thresh",
+        type=float,
+        help="Custom silence threshold in dBFS (e.g., -40.0). Overrides preset threshold."
+    )
+    parser.add_argument(
+        "--custom-min-silence",
+        type=int,
+        help="Custom minimum silence length in milliseconds (e.g., 500). Overrides preset."
+    )
 
     args = parser.parse_args()
     video_path = args.video_path
@@ -136,6 +154,9 @@ def main():
         
         timestamps = split_into_chunks(
             video_out, audio_out, base_dir,
+            silence_preset=args.silence_preset,
+            custom_silence_thresh=args.custom_silence_thresh,
+            custom_min_silence_len=args.custom_min_silence,
             filter_faces=filter_faces,
             face_threshold=args.face_threshold,
             sample_interval=args.sample_interval,

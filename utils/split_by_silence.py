@@ -62,11 +62,105 @@ def merge_close_chunks(timestamps, min_gap=0.25):
     merged.append((prev_start, prev_end))  # Don't forget the last chunk
     return merged
 
-def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=700,
-                      keep_silence=150, max_chunk_len=20000, filter_faces=True,
+def get_silence_preset(preset_name):
+    """
+    Get silence detection parameters for different presets.
+    
+    Presets:
+    - very_sensitive: Splits on very short pauses (word-level, -16 dB)
+    - sensitive: Splits on short pauses (phrase-level, -18 dB)
+    - balanced: Default - sentence-level pauses (-20 dB)
+    - conservative: Only major pauses (paragraph-level, -22 dB)
+    - very_conservative: Very long pauses only (-25 dB)
+    
+    Returns:
+        dict: Parameters for silence detection
+    """
+    presets = {
+        'very_sensitive': {
+            'min_silence_len': 400,      # 400ms minimum silence
+            'silence_offset': -16,       # dBFS offset from audio level
+            'keep_silence': 100,         # Keep 100ms silence padding
+            'max_chunk_len': 15000,      # Max 15s per chunk
+            'description': 'Very sensitive - splits on short pauses (word-level)'
+        },
+        'sensitive': {
+            'min_silence_len': 500,      # 500ms minimum silence
+            'silence_offset': -18,       # dBFS offset from audio level
+            'keep_silence': 120,         # Keep 120ms silence padding
+            'max_chunk_len': 18000,      # Max 18s per chunk
+            'description': 'Sensitive - splits on phrase-level pauses'
+        },
+        'balanced': {
+            'min_silence_len': 700,      # 700ms minimum silence (DEFAULT)
+            'silence_offset': -20,       # dBFS offset from audio level
+            'keep_silence': 150,         # Keep 150ms silence padding
+            'max_chunk_len': 20000,      # Max 20s per chunk
+            'description': 'Balanced - sentence-level boundaries (default)'
+        },
+        'conservative': {
+            'min_silence_len': 900,      # 900ms minimum silence
+            'silence_offset': -22,       # dBFS offset from audio level
+            'keep_silence': 180,         # Keep 180ms silence padding
+            'max_chunk_len': 25000,      # Max 25s per chunk
+            'description': 'Conservative - paragraph-level boundaries'
+        },
+        'very_conservative': {
+            'min_silence_len': 1200,     # 1200ms minimum silence
+            'silence_offset': -25,       # dBFS offset from audio level
+            'keep_silence': 200,         # Keep 200ms silence padding
+            'max_chunk_len': 30000,      # Max 30s per chunk
+            'description': 'Very conservative - major topic changes only'
+        }
+    }
+    
+    if preset_name not in presets:
+        print(f"⚠️  Unknown preset '{preset_name}', using 'balanced'")
+        return presets['balanced']
+    
+    return presets[preset_name]
+
+
+def split_into_chunks(video_path, audio_path, output_dir, 
+                      silence_preset='balanced',
+                      custom_silence_thresh=None,
+                      custom_min_silence_len=None,
+                      min_silence_len=None,  # Deprecated - use custom_min_silence_len or preset
+                      keep_silence=None,
+                      max_chunk_len=None,
+                      filter_faces=True,
                       face_threshold=0.3, sample_interval=0.5, refine_chunks=True,
                       refine_sample_rate=0.03, min_face_duration=0.5, min_chunk_duration=1.0,
                       max_face_gap=0.1, apply_noise_reduction=False):
+    # Get preset parameters
+    preset_params = get_silence_preset(silence_preset)
+    
+    # Allow custom overrides
+    if custom_min_silence_len is not None:
+        preset_params['min_silence_len'] = custom_min_silence_len
+    elif min_silence_len is not None:
+        # Support deprecated parameter for backward compatibility
+        preset_params['min_silence_len'] = min_silence_len
+    
+    if keep_silence is not None:
+        preset_params['keep_silence'] = keep_silence
+    
+    if max_chunk_len is not None:
+        preset_params['max_chunk_len'] = max_chunk_len
+    
+    # Extract final parameters
+    final_min_silence_len = preset_params['min_silence_len']
+    final_keep_silence = preset_params['keep_silence']
+    final_max_chunk_len = preset_params['max_chunk_len']
+    silence_offset = preset_params['silence_offset']
+    
+    print(f"🎚️  Silence Detection Settings:")
+    print(f"   Preset: {silence_preset} - {preset_params['description']}")
+    print(f"   Min silence length: {final_min_silence_len}ms")
+    print(f"   Silence offset: {silence_offset} dB")
+    print(f"   Keep silence padding: {final_keep_silence}ms")
+    print(f"   Max chunk length: {final_max_chunk_len/1000:.1f}s")
+    
     chunks_dir = os.path.join(output_dir, "chunks")
     audio_out = os.path.join(chunks_dir, "audio")
     video_out = os.path.join(chunks_dir, "video")
@@ -86,21 +180,26 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=700,
     print("Estimating silence threshold...")
     dynamic_thresh = dynamic_silence_thresh(audio_seg)
     
-    # Use a more reasonable silence threshold (not too low)
-    # If dynamic threshold is too low, use a higher default
-    # Using -18 to -20 dB difference to focus on sentence-level pauses, not word-level
-    silence_thresh = max(dynamic_thresh, audio_seg.dBFS - 18)  # Less sensitive for sentence breaks only
+    # Calculate silence threshold based on preset and custom override
+    if custom_silence_thresh is not None:
+        # Use custom absolute threshold
+        silence_thresh = custom_silence_thresh
+        print(f"Using custom silence threshold: {silence_thresh:.2f} dBFS")
+    else:
+        # Use preset offset from audio level
+        silence_thresh = max(dynamic_thresh, audio_seg.dBFS + silence_offset)
+        print(f"Using preset-based threshold: {silence_thresh:.2f} dBFS (offset: {silence_offset} dB)")
     
-    print(f"Dynamic threshold: {dynamic_thresh:.2f} dBFS")
-    print(f"Using silence threshold: {silence_thresh:.2f} dBFS")
-    print(f"Audio dBFS: {audio_seg.dBFS:.2f} dBFS")
+    print(f"   Dynamic threshold: {dynamic_thresh:.2f} dBFS")
+    print(f"   Audio dBFS: {audio_seg.dBFS:.2f} dBFS")
+    print(f"   Final threshold: {silence_thresh:.2f} dBFS")
 
-    # Split audio
+    # Split audio using final parameters
     raw_chunks = silence.split_on_silence(
         audio_seg,
-        min_silence_len=min_silence_len,
+        min_silence_len=final_min_silence_len,
         silence_thresh=silence_thresh,
-        keep_silence=keep_silence
+        keep_silence=final_keep_silence
     )
 
     print(f"Found {len(raw_chunks)} raw chunks from silence detection")
@@ -109,17 +208,17 @@ def split_into_chunks(video_path, audio_path, output_dir, min_silence_len=700,
     if len(raw_chunks) <= 1:
         print("No silence detected, forcing split by max chunk length...")
         raw_chunks = []
-        for i in range(0, len(audio_seg), max_chunk_len):
-            raw_chunks.append(audio_seg[i:i + max_chunk_len])
+        for i in range(0, len(audio_seg), final_max_chunk_len):
+            raw_chunks.append(audio_seg[i:i + final_max_chunk_len])
 
     # Enforce max length per chunk
     final_chunks = []
     for chunk in raw_chunks:
-        if len(chunk) <= max_chunk_len:
+        if len(chunk) <= final_max_chunk_len:
             final_chunks.append(chunk)
         else:
-            for i in range(0, len(chunk), max_chunk_len):
-                final_chunks.append(chunk[i:i + max_chunk_len])
+            for i in range(0, len(chunk), final_max_chunk_len):
+                final_chunks.append(chunk[i:i + final_max_chunk_len])
 
     # Generate timestamps
     timestamps = []
