@@ -3,6 +3,32 @@
 ## Overview
 This project creates a high-quality Bengali speech audio-visual dataset by processing videos through an advanced multi-stage pipeline. The system extracts audio, applies intelligent segmentation based on silence detection, performs face detection to filter out non-speaking segments, and refines chunks to ensure they contain only face content. The dataset is designed to support research in speech recognition, audio-visual synchronization, and related fields.
 
+## 🐳 Docker Quick Start (Recommended)
+
+**Want to get started immediately? Use Docker!**
+
+```bash
+# Build the container (includes everything - SyncNet, models, dependencies)
+./build_docker.sh
+
+# Start and run
+./run_docker.sh start
+./run_docker.sh run YOUR_VIDEO_ID
+
+# That's it! No complex setup required.
+```
+
+✅ Includes your modified SyncNet  
+✅ All pretrained models and weights  
+✅ No internet downloads needed at runtime  
+✅ GPU support (if available)  
+
+**See [DOCKER_README.md](DOCKER_README.md) for complete Docker guide.**
+
+---
+
+## Manual Installation (Alternative)
+
 ## Features
 - **Advanced Video Processing**: Multi-stage pipeline with intelligent content filtering
 - **Audio Extraction & Denoising**: Extracts and cleans audio using advanced denoising techniques
