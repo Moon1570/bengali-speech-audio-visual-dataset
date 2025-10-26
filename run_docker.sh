@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 
 # Default values
 CONTAINER_NAME="bengali-pipeline"
-IMAGE_NAME="bengali-speech-pipeline:latest"
+IMAGE_NAME="${IMAGE_NAME:-moon1570/bengali-speech-pipeline:latest}"  # Use Docker Hub image by default
 USE_GPU=false  # Default to CPU mode
 
 # Function to print colored messages
