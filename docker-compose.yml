@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  bengali-pipeline:
+    image: moon1570/bengali-speech-pipeline:latest
+    container_name: bengali-pipeline
+    
+    # GPU support (requires nvidia-docker)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    
+    # Mount volumes for data persistence
+    volumes:
+      - ./downloads:/app/bengali-pipeline/downloads
+      - ./outputs:/app/bengali-pipeline/outputs
+      - ./experiments:/app/bengali-pipeline/experiments
+      - ./logs:/app/bengali-pipeline/logs
+      - ./data:/app/bengali-pipeline/data
+      - ./denoised_audio:/app/bengali-pipeline/denoised_audio
+      - ./amplified_denoised_audio:/app/bengali-pipeline/amplified_denoised_audio
+      - syncnet-data:/app/syncnet_python/data
+      - syncnet-results:/app/syncnet_python/results
+    
+    # Environment variables
+    environment:
+      - SYNCNET_REPO=/app/syncnet_python
+      - CURRENT_REPO=/app/bengali-pipeline
+      - PYTHONUNBUFFERED=1
+      - CUDA_VISIBLE_DEVICES=0
+    
+    # Keep container running
+    stdin_open: true
+    tty: true
+    
+    # Network mode
+    network_mode: bridge
+    
+    # Working directory
+    working_dir: /app/bengali-pipeline
+
+volumes:
+  syncnet-data:
+    driver: local
+  syncnet-results:
+    driver: local

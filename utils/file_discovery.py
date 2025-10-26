@@ -402,9 +402,15 @@ def save_transcripts_to_input_folder(video_info, model, original_file_path=None)
         original_filename = video_id
     
     try:
+        # Create model-specific transcription folder at parent level (sibling to video_normal/)
+        transcription_folder_name = f"{model}_transcription"
+        parent_folder = os.path.dirname(input_folder)  # Go one level up
+        transcription_folder = os.path.join(parent_folder, transcription_folder_name)
+        os.makedirs(transcription_folder, exist_ok=True)
+        
         # Create single transcript file with same name as input file
         transcript_filename = f"{original_filename}.txt"
-        transcript_file_path = os.path.join(input_folder, transcript_filename)
+        transcript_file_path = os.path.join(transcription_folder, transcript_filename)
 
         # Combine all chunks into a single file
         valid_chunks = combine_chunks_to_single_file(text_dir, transcript_file_path)
@@ -450,8 +456,8 @@ def save_transcripts_to_input_folder(video_info, model, original_file_path=None)
 
         logger.info(f"📋 Also saved {len(text_files)} individual chunks to: {transcript_dir}")
 
-        # Create a summary file
-        summary_file = os.path.join(input_folder, f"{original_filename}_{model}_summary.txt")
+        # Create a summary file in the transcription folder
+        summary_file = os.path.join(transcription_folder, f"{original_filename}_{model}_summary.txt")
         with open(summary_file, 'w', encoding='utf-8') as f:
             f.write(f"Transcription Summary\n")
             f.write(f"====================\n\n")

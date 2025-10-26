@@ -257,6 +257,170 @@
       "chunks_transcribed": 0,
       "status": "completed",
       "duration_seconds": 2180.344609975815
+    },
+    {
+      "session_id": "20251011_000418",
+      "start_time": "2025-10-11T00:04:18.661587",
+      "end_time": "2025-10-11T00:50:58.771824",
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/SSYouTubeonline/video_normal",
+      "videos_processed": 37,
+      "videos_successful": 37,
+      "videos_failed": 0,
+      "total_chunks": 48,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 2800.1050350666046
+    },
+    {
+      "session_id": "20251011_031617",
+      "start_time": "2025-10-11T03:16:17.930310",
+      "end_time": "2025-10-11T03:19:05.237341",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/SSYouTubeonline/video_normal",
+      "videos_processed": 44,
+      "videos_successful": 44,
+      "videos_failed": 0,
+      "total_chunks": 62,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 167.29999685287476
+    },
+    {
+      "session_id": "20251011_035412",
+      "start_time": "2025-10-11T03:54:12.266978",
+      "end_time": "2025-10-11T03:57:00.360480",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/SSYouTubeonline/video_normal",
+      "videos_processed": 44,
+      "videos_successful": 44,
+      "videos_failed": 0,
+      "total_chunks": 62,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 168.0851080417633
+    },
+    {
+      "session_id": "20251023_191135",
+      "start_time": "2025-10-23T19:11:35.129176",
+      "end_time": null,
+      "model": "both",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/hxhLGCguRO0_test/video_normal",
+      "videos_processed": 0,
+      "videos_successful": 0,
+      "videos_failed": 0,
+      "total_chunks": 0,
+      "chunks_transcribed": 0,
+      "status": "running"
+    },
+    {
+      "session_id": "20251024_080259",
+      "start_time": "2025-10-24T08:02:59.494401",
+      "end_time": "2025-10-24T08:03:09.164075",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/hxhLGCguRO0_test/video_normal",
+      "videos_processed": 6,
+      "videos_successful": 6,
+      "videos_failed": 0,
+      "total_chunks": 11,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 9.663084030151367
+    },
+    {
+      "session_id": "20251024_081122",
+      "start_time": "2025-10-24T08:11:22.503942",
+      "end_time": "2025-10-24T08:11:32.413307",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "/app/bengali-pipeline/custom_output/hxhLGCguRO0_test/video_normal",
+      "videos_processed": 6,
+      "videos_successful": 6,
+      "videos_failed": 0,
+      "total_chunks": 11,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 9.902386903762817
+    },
+    {
+      "session_id": "20251024_081718",
+      "start_time": "2025-10-24T08:17:18.157163",
+      "end_time": "2025-10-24T08:17:25.369282",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "/app/bengali-pipeline/test_output/hxhLGCguRO0_test/video_normal",
+      "videos_processed": 6,
+      "videos_successful": 6,
+      "videos_failed": 0,
+      "total_chunks": 11,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 7.205034017562866
+    },
+    {
+      "session_id": "20251024_085044",
+      "start_time": "2025-10-24T08:50:44.638680",
+      "end_time": "2025-10-24T08:50:53.838871",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/hxhLGCguRO0_test/video_normal",
+      "videos_processed": 6,
+      "videos_successful": 6,
+      "videos_failed": 0,
+      "total_chunks": 11,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 9.19199800491333
+    },
+    {
+      "session_id": "20251024_090253",
+      "start_time": "2025-10-24T09:02:53.985205",
+      "end_time": "2025-10-24T09:03:04.894665",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "outputs/A00000000_test/A00000000_test/video_normal",
+      "videos_processed": 5,
+      "videos_successful": 5,
+      "videos_failed": 0,
+      "total_chunks": 15,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 10.901718616485596
+    },
+    {
+      "session_id": "20251024_095937",
+      "start_time": "2025-10-24T09:59:37.695187",
+      "end_time": "2025-10-24T10:00:32.664869",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "experiments/experiment_data/efhkN7e8238/video_normal",
+      "videos_processed": 50,
+      "videos_successful": 50,
+      "videos_failed": 0,
+      "total_chunks": 55,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 54.95371770858765
+    },
+    {
+      "session_id": "20251024_112950",
+      "start_time": "2025-10-24T11:29:50.469330",
+      "end_time": "2025-10-24T11:30:21.061281",
+      "model": "google",
+      "mode": "batch",
+      "target_path": "outputs/A00000000_test/A00000000_test/video_normal",
+      "videos_processed": 5,
+      "videos_successful": 5,
+      "videos_failed": 0,
+      "total_chunks": 15,
+      "chunks_transcribed": 0,
+      "status": "completed",
+      "duration_seconds": 30.58602476119995
     }
   ],
   "completed_videos": {
@@ -1725,7 +1889,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-25T23:03:33.925519"
+      "last_updated": "2025-10-24T09:59:40.989182"
     },
     "efhkN7e8238_chunk_044_whisper": {
       "video_id": "efhkN7e8238_chunk_044",
@@ -1743,7 +1907,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-25T23:05:45.251437"
+      "last_updated": "2025-10-24T09:59:41.512504"
     },
     "efhkN7e8238_chunk_078_whisper": {
       "video_id": "efhkN7e8238_chunk_078",
@@ -1761,7 +1925,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-25T22:47:06.933900"
+      "last_updated": "2025-10-24T09:59:46.548554"
     },
     "efhkN7e8238_chunk_087_whisper": {
       "video_id": "efhkN7e8238_chunk_087",
@@ -1779,7 +1943,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-25T22:47:26.346416"
+      "last_updated": "2025-10-24T09:59:46.941528"
     },
     "efhkN7e8238_chunk_045_whisper": {
       "video_id": "efhkN7e8238_chunk_045",
@@ -1797,7 +1961,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-25T22:47:48.360930"
+      "last_updated": "2025-10-24T09:59:47.486404"
     },
     "efhkN7e8238_chunk_051_whisper": {
       "video_id": "efhkN7e8238_chunk_051",
@@ -1815,7 +1979,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-25T22:48:16.357050"
+      "last_updated": "2025-10-24T09:59:48.011903"
     },
     "efhkN7e8238_chunk_084_whisper": {
       "video_id": "efhkN7e8238_chunk_084",
@@ -1833,7 +1997,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:06:03.472969"
+      "last_updated": "2025-10-24T09:59:49.172690"
     },
     "efhkN7e8238_chunk_085_whisper": {
       "video_id": "efhkN7e8238_chunk_085",
@@ -1851,7 +2015,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:06:44.966969"
+      "last_updated": "2025-10-24T09:59:49.712676"
     },
     "efhkN7e8238_chunk_052_whisper": {
       "video_id": "efhkN7e8238_chunk_052",
@@ -1869,7 +2033,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:07:11.987383"
+      "last_updated": "2025-10-24T09:59:50.252642"
     },
     "efhkN7e8238_chunk_046_whisper": {
       "video_id": "efhkN7e8238_chunk_046",
@@ -1887,7 +2051,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:09:27.117294"
+      "last_updated": "2025-10-24T09:59:52.062448"
     },
     "efhkN7e8238_chunk_081_whisper": {
       "video_id": "efhkN7e8238_chunk_081",
@@ -1905,7 +2069,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:09:51.462330"
+      "last_updated": "2025-10-24T09:59:52.665883"
     },
     "efhkN7e8238_chunk_057_whisper": {
       "video_id": "efhkN7e8238_chunk_057",
@@ -1923,7 +2087,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:10:15.027371"
+      "last_updated": "2025-10-24T09:59:53.386903"
     },
     "efhkN7e8238_chunk_043_whisper": {
       "video_id": "efhkN7e8238_chunk_043",
@@ -1941,7 +2105,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:10:48.685166"
+      "last_updated": "2025-10-24T09:59:53.978750"
     },
     "efhkN7e8238_chunk_069_whisper": {
       "video_id": "efhkN7e8238_chunk_069",
@@ -1959,7 +2123,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:11:15.710105"
+      "last_updated": "2025-10-24T09:59:56.385665"
     },
     "efhkN7e8238_chunk_055_whisper": {
       "video_id": "efhkN7e8238_chunk_055",
@@ -1977,7 +2141,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:11:44.709804"
+      "last_updated": "2025-10-24T09:59:56.957914"
     },
     "efhkN7e8238_chunk_083_whisper": {
       "video_id": "efhkN7e8238_chunk_083",
@@ -1995,7 +2159,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:12:12.588064"
+      "last_updated": "2025-10-24T09:59:59.618200"
     },
     "efhkN7e8238_chunk_040_whisper": {
       "video_id": "efhkN7e8238_chunk_040",
@@ -2013,7 +2177,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:12:59.563067"
+      "last_updated": "2025-10-24T10:00:00.395431"
     },
     "efhkN7e8238_chunk_054_whisper": {
       "video_id": "efhkN7e8238_chunk_054",
@@ -2031,7 +2195,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:13:45.364008"
+      "last_updated": "2025-10-24T10:00:01.240658"
     },
     "efhkN7e8238_chunk_027_whisper": {
       "video_id": "efhkN7e8238_chunk_027",
@@ -2049,7 +2213,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:14:46.807533"
+      "last_updated": "2025-10-24T10:00:01.767675"
     },
     "efhkN7e8238_chunk_024_whisper": {
       "video_id": "efhkN7e8238_chunk_024",
@@ -2067,7 +2231,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:15:06.277346"
+      "last_updated": "2025-10-24T10:00:02.335496"
     },
     "efhkN7e8238_chunk_030_whisper": {
       "video_id": "efhkN7e8238_chunk_030",
@@ -2085,7 +2249,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:15:31.898372"
+      "last_updated": "2025-10-24T10:00:02.895240"
     },
     "efhkN7e8238_chunk_018_whisper": {
       "video_id": "efhkN7e8238_chunk_018",
@@ -2103,7 +2267,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:16:30.531042"
+      "last_updated": "2025-10-24T10:00:03.420194"
     },
     "efhkN7e8238_chunk_019_whisper": {
       "video_id": "efhkN7e8238_chunk_019",
@@ -2121,7 +2285,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:16:52.352621"
+      "last_updated": "2025-10-24T10:00:03.969327"
     },
     "efhkN7e8238_chunk_031_whisper": {
       "video_id": "efhkN7e8238_chunk_031",
@@ -2139,7 +2303,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:17:14.827464"
+      "last_updated": "2025-10-24T10:00:04.529686"
     },
     "efhkN7e8238_chunk_035_whisper": {
       "video_id": "efhkN7e8238_chunk_035",
@@ -2157,7 +2321,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:17:33.881168"
+      "last_updated": "2025-10-24T10:00:08.515471"
     },
     "efhkN7e8238_chunk_034_whisper": {
       "video_id": "efhkN7e8238_chunk_034",
@@ -2175,7 +2339,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:18:13.016451"
+      "last_updated": "2025-10-24T10:00:09.784167"
     },
     "efhkN7e8238_chunk_020_whisper": {
       "video_id": "efhkN7e8238_chunk_020",
@@ -2193,7 +2357,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:18:45.553443"
+      "last_updated": "2025-10-24T10:00:11.787917"
     },
     "efhkN7e8238_chunk_036_whisper": {
       "video_id": "efhkN7e8238_chunk_036",
@@ -2211,7 +2375,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:20:28.515179"
+      "last_updated": "2025-10-24T10:00:12.383109"
     },
     "efhkN7e8238_chunk_022_whisper": {
       "video_id": "efhkN7e8238_chunk_022",
@@ -2229,7 +2393,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:20:56.489510"
+      "last_updated": "2025-10-24T10:00:12.965871"
     },
     "efhkN7e8238_chunk_006_whisper": {
       "video_id": "efhkN7e8238_chunk_006",
@@ -2247,7 +2411,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:35:23.237567"
+      "last_updated": "2025-10-24T10:00:13.482318"
     },
     "efhkN7e8238_chunk_013_whisper": {
       "video_id": "efhkN7e8238_chunk_013",
@@ -2265,7 +2429,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:36:48.130811"
+      "last_updated": "2025-10-24T10:00:14.017580"
     },
     "efhkN7e8238_chunk_005_whisper": {
       "video_id": "efhkN7e8238_chunk_005",
@@ -2283,7 +2447,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:41:26.414148"
+      "last_updated": "2025-10-24T10:00:14.558801"
     },
     "efhkN7e8238_chunk_038_whisper": {
       "video_id": "efhkN7e8238_chunk_038",
@@ -2301,7 +2465,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:41:50.029261"
+      "last_updated": "2025-10-24T10:00:15.086596"
     },
     "efhkN7e8238_chunk_004_whisper": {
       "video_id": "efhkN7e8238_chunk_004",
@@ -2319,7 +2483,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:42:06.309757"
+      "last_updated": "2025-10-24T10:00:16.763842"
     },
     "efhkN7e8238_chunk_028_whisper": {
       "video_id": "efhkN7e8238_chunk_028",
@@ -2337,7 +2501,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:42:40.198678"
+      "last_updated": "2025-10-24T10:00:17.550522"
     },
     "efhkN7e8238_chunk_000_whisper": {
       "video_id": "efhkN7e8238_chunk_000",
@@ -2355,7 +2519,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:44:42.580415"
+      "last_updated": "2025-10-24T10:00:18.105205"
     },
     "efhkN7e8238_chunk_014_whisper": {
       "video_id": "efhkN7e8238_chunk_014",
@@ -2373,7 +2537,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:45:04.465337"
+      "last_updated": "2025-10-24T10:00:18.683815"
     },
     "efhkN7e8238_chunk_015_whisper": {
       "video_id": "efhkN7e8238_chunk_015",
@@ -2391,7 +2555,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:45:27.782456"
+      "last_updated": "2025-10-24T10:00:19.676346"
     },
     "efhkN7e8238_chunk_001_whisper": {
       "video_id": "efhkN7e8238_chunk_001",
@@ -2409,7 +2573,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:46:01.712471"
+      "last_updated": "2025-10-24T10:00:24.721217"
     },
     "efhkN7e8238_chunk_029_whisper": {
       "video_id": "efhkN7e8238_chunk_029",
@@ -2427,7 +2591,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:46:16.823234"
+      "last_updated": "2025-10-24T10:00:26.250660"
     },
     "efhkN7e8238_chunk_017_whisper": {
       "video_id": "efhkN7e8238_chunk_017",
@@ -2445,7 +2609,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:47:03.737996"
+      "last_updated": "2025-10-24T10:00:26.799231"
     },
     "efhkN7e8238_chunk_002_whisper": {
       "video_id": "efhkN7e8238_chunk_002",
@@ -2463,7 +2627,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:47:24.223111"
+      "last_updated": "2025-10-24T10:00:27.326817"
     },
     "efhkN7e8238_chunk_072_whisper": {
       "video_id": "efhkN7e8238_chunk_072",
@@ -2481,7 +2645,7 @@
       "chunks_transcribed": 2,
       "total_chunks": 2,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:48:12.831285"
+      "last_updated": "2025-10-24T10:00:28.728590"
     },
     "efhkN7e8238_chunk_073_whisper": {
       "video_id": "efhkN7e8238_chunk_073",
@@ -2499,7 +2663,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:49:06.132356"
+      "last_updated": "2025-10-24T10:00:29.351533"
     },
     "efhkN7e8238_chunk_067_whisper": {
       "video_id": "efhkN7e8238_chunk_067",
@@ -2517,7 +2681,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:49:38.560723"
+      "last_updated": "2025-10-24T10:00:29.892766"
     },
     "efhkN7e8238_chunk_063_whisper": {
       "video_id": "efhkN7e8238_chunk_063",
@@ -2535,7 +2699,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:49:57.222355"
+      "last_updated": "2025-10-24T10:00:30.404649"
     },
     "efhkN7e8238_chunk_077_whisper": {
       "video_id": "efhkN7e8238_chunk_077",
@@ -2553,7 +2717,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:50:19.131574"
+      "last_updated": "2025-10-24T10:00:30.944307"
     },
     "efhkN7e8238_chunk_076_whisper": {
       "video_id": "efhkN7e8238_chunk_076",
@@ -2571,7 +2735,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:50:39.143720"
+      "last_updated": "2025-10-24T10:00:31.499839"
     },
     "efhkN7e8238_chunk_062_whisper": {
       "video_id": "efhkN7e8238_chunk_062",
@@ -2589,7 +2753,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:51:00.179299"
+      "last_updated": "2025-10-24T10:00:32.080893"
     },
     "efhkN7e8238_chunk_074_whisper": {
       "video_id": "efhkN7e8238_chunk_074",
@@ -2607,7 +2771,7 @@
       "chunks_transcribed": 1,
       "total_chunks": 1,
       "completion_rate": 100.0,
-      "last_updated": "2025-08-23T23:51:23.764700"
+      "last_updated": "2025-10-24T10:00:32.650583"
     },
     "efhkN7e8238_chunk_061_whisper": {
       "video_id": "efhkN7e8238_chunk_061",
@@ -3607,7 +3771,835 @@
       "total_chunks": 1,
       "completion_rate": 100.0,
       "last_updated": "2025-08-30T01:30:06.304450"
+    },
+    "SSYouTubeonline_chunk_025_google": {
+      "video_id": "SSYouTubeonline_chunk_025",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:22.247805"
+    },
+    "SSYouTubeonline_chunk_025_whisper": {
+      "video_id": "SSYouTubeonline_chunk_025",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:04:58.954531"
+    },
+    "SSYouTubeonline_chunk_019_google": {
+      "video_id": "SSYouTubeonline_chunk_019",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:26.588075"
+    },
+    "SSYouTubeonline_chunk_019_whisper": {
+      "video_id": "SSYouTubeonline_chunk_019",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:05:40.307540"
+    },
+    "SSYouTubeonline_chunk_018_google": {
+      "video_id": "SSYouTubeonline_chunk_018",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:28.256485"
+    },
+    "SSYouTubeonline_chunk_018_whisper": {
+      "video_id": "SSYouTubeonline_chunk_018",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:07:00.716844"
+    },
+    "SSYouTubeonline_chunk_024_google": {
+      "video_id": "SSYouTubeonline_chunk_024",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 4,
+      "total_chunks": 4,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:32.734724"
+    },
+    "SSYouTubeonline_chunk_024_whisper": {
+      "video_id": "SSYouTubeonline_chunk_024",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:07:39.226969"
+    },
+    "SSYouTubeonline_chunk_030_google": {
+      "video_id": "SSYouTubeonline_chunk_030",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 5,
+      "total_chunks": 5,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:38.577814"
+    },
+    "SSYouTubeonline_chunk_030_whisper": {
+      "video_id": "SSYouTubeonline_chunk_030",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 5,
+      "total_chunks": 5,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:09:17.327604"
+    },
+    "SSYouTubeonline_chunk_026_google": {
+      "video_id": "SSYouTubeonline_chunk_026",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:40.981229"
+    },
+    "SSYouTubeonline_chunk_026_whisper": {
+      "video_id": "SSYouTubeonline_chunk_026",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:10:10.158540"
+    },
+    "SSYouTubeonline_chunk_032_google": {
+      "video_id": "SSYouTubeonline_chunk_032",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:45.999899"
+    },
+    "SSYouTubeonline_chunk_032_whisper": {
+      "video_id": "SSYouTubeonline_chunk_032",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:10:59.652722"
+    },
+    "SSYouTubeonline_chunk_033_google": {
+      "video_id": "SSYouTubeonline_chunk_033",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:47.598922"
+    },
+    "SSYouTubeonline_chunk_033_whisper": {
+      "video_id": "SSYouTubeonline_chunk_033",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:11:16.684683"
+    },
+    "SSYouTubeonline_chunk_027_google": {
+      "video_id": "SSYouTubeonline_chunk_027",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:51.190537"
+    },
+    "SSYouTubeonline_chunk_027_whisper": {
+      "video_id": "SSYouTubeonline_chunk_027",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:11:34.703254"
+    },
+    "SSYouTubeonline_chunk_023_google": {
+      "video_id": "SSYouTubeonline_chunk_023",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:55.733386"
+    },
+    "SSYouTubeonline_chunk_023_whisper": {
+      "video_id": "SSYouTubeonline_chunk_023",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:12:30.361886"
+    },
+    "SSYouTubeonline_chunk_037_google": {
+      "video_id": "SSYouTubeonline_chunk_037",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:01.253046"
+    },
+    "SSYouTubeonline_chunk_037_whisper": {
+      "video_id": "SSYouTubeonline_chunk_037",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:13:16.342728"
+    },
+    "SSYouTubeonline_chunk_036_google": {
+      "video_id": "SSYouTubeonline_chunk_036",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:05.761331"
+    },
+    "SSYouTubeonline_chunk_036_whisper": {
+      "video_id": "SSYouTubeonline_chunk_036",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:19:52.317842"
+    },
+    "SSYouTubeonline_chunk_022_google": {
+      "video_id": "SSYouTubeonline_chunk_022",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:10.792441"
+    },
+    "SSYouTubeonline_chunk_022_whisper": {
+      "video_id": "SSYouTubeonline_chunk_022",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:21:26.518279"
+    },
+    "SSYouTubeonline_chunk_008_google": {
+      "video_id": "SSYouTubeonline_chunk_008",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:13.596672"
+    },
+    "SSYouTubeonline_chunk_008_whisper": {
+      "video_id": "SSYouTubeonline_chunk_008",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:22:04.934722"
+    },
+    "SSYouTubeonline_chunk_034_google": {
+      "video_id": "SSYouTubeonline_chunk_034",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:14.741500"
+    },
+    "SSYouTubeonline_chunk_034_whisper": {
+      "video_id": "SSYouTubeonline_chunk_034",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:22:49.664101"
+    },
+    "SSYouTubeonline_chunk_020_google": {
+      "video_id": "SSYouTubeonline_chunk_020",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:17.236600"
+    },
+    "SSYouTubeonline_chunk_020_whisper": {
+      "video_id": "SSYouTubeonline_chunk_020",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:23:31.682691"
+    },
+    "SSYouTubeonline_chunk_021_google": {
+      "video_id": "SSYouTubeonline_chunk_021",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:18.988478"
+    },
+    "SSYouTubeonline_chunk_021_whisper": {
+      "video_id": "SSYouTubeonline_chunk_021",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:29:27.535555"
+    },
+    "SSYouTubeonline_chunk_035_google": {
+      "video_id": "SSYouTubeonline_chunk_035",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:22.399718"
+    },
+    "SSYouTubeonline_chunk_035_whisper": {
+      "video_id": "SSYouTubeonline_chunk_035",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:30:10.193162"
+    },
+    "SSYouTubeonline_chunk_009_google": {
+      "video_id": "SSYouTubeonline_chunk_009",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:25.827161"
+    },
+    "SSYouTubeonline_chunk_009_whisper": {
+      "video_id": "SSYouTubeonline_chunk_009",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:30:51.353811"
+    },
+    "SSYouTubeonline_chunk_046_google": {
+      "video_id": "SSYouTubeonline_chunk_046",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:31.344485"
+    },
+    "SSYouTubeonline_chunk_046_whisper": {
+      "video_id": "SSYouTubeonline_chunk_046",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:32:09.950410"
+    },
+    "SSYouTubeonline_chunk_045_google": {
+      "video_id": "SSYouTubeonline_chunk_045",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:35.054545"
+    },
+    "SSYouTubeonline_chunk_045_whisper": {
+      "video_id": "SSYouTubeonline_chunk_045",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:32:57.782805"
+    },
+    "SSYouTubeonline_chunk_044_google": {
+      "video_id": "SSYouTubeonline_chunk_044",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:40.165439"
+    },
+    "SSYouTubeonline_chunk_044_whisper": {
+      "video_id": "SSYouTubeonline_chunk_044",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:33:43.461020"
+    },
+    "SSYouTubeonline_chunk_041_google": {
+      "video_id": "SSYouTubeonline_chunk_041",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:44.391538"
+    },
+    "SSYouTubeonline_chunk_041_whisper": {
+      "video_id": "SSYouTubeonline_chunk_041",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:35:10.338742"
+    },
+    "SSYouTubeonline_chunk_043_google": {
+      "video_id": "SSYouTubeonline_chunk_043",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:49.199648"
+    },
+    "SSYouTubeonline_chunk_043_whisper": {
+      "video_id": "SSYouTubeonline_chunk_043",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:40:10.819601"
+    },
+    "SSYouTubeonline_chunk_042_google": {
+      "video_id": "SSYouTubeonline_chunk_042",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:54.245538"
+    },
+    "SSYouTubeonline_chunk_042_whisper": {
+      "video_id": "SSYouTubeonline_chunk_042",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:40:58.264307"
+    },
+    "SSYouTubeonline_chunk_010_google": {
+      "video_id": "SSYouTubeonline_chunk_010",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:56.507129"
+    },
+    "SSYouTubeonline_chunk_010_whisper": {
+      "video_id": "SSYouTubeonline_chunk_010",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:41:35.533360"
+    },
+    "SSYouTubeonline_chunk_038_google": {
+      "video_id": "SSYouTubeonline_chunk_038",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:06.197903"
+    },
+    "SSYouTubeonline_chunk_038_whisper": {
+      "video_id": "SSYouTubeonline_chunk_038",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:42:17.252722"
+    },
+    "SSYouTubeonline_chunk_039_google": {
+      "video_id": "SSYouTubeonline_chunk_039",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:11.462769"
+    },
+    "SSYouTubeonline_chunk_039_whisper": {
+      "video_id": "SSYouTubeonline_chunk_039",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:42:32.980724"
+    },
+    "SSYouTubeonline_chunk_005_google": {
+      "video_id": "SSYouTubeonline_chunk_005",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:16.381478"
+    },
+    "SSYouTubeonline_chunk_005_whisper": {
+      "video_id": "SSYouTubeonline_chunk_005",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:43:11.758180"
+    },
+    "SSYouTubeonline_chunk_011_google": {
+      "video_id": "SSYouTubeonline_chunk_011",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:19.934245"
+    },
+    "SSYouTubeonline_chunk_011_whisper": {
+      "video_id": "SSYouTubeonline_chunk_011",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:44:23.306301"
+    },
+    "SSYouTubeonline_chunk_006_google": {
+      "video_id": "SSYouTubeonline_chunk_006",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:33.819987"
+    },
+    "SSYouTubeonline_chunk_006_whisper": {
+      "video_id": "SSYouTubeonline_chunk_006",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:45:03.876129"
+    },
+    "SSYouTubeonline_chunk_016_google": {
+      "video_id": "SSYouTubeonline_chunk_016",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:39.488056"
+    },
+    "SSYouTubeonline_chunk_016_whisper": {
+      "video_id": "SSYouTubeonline_chunk_016",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:45:45.719186"
+    },
+    "SSYouTubeonline_chunk_017_google": {
+      "video_id": "SSYouTubeonline_chunk_017",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:42.390370"
+    },
+    "SSYouTubeonline_chunk_017_whisper": {
+      "video_id": "SSYouTubeonline_chunk_017",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:47:13.957679"
+    },
+    "SSYouTubeonline_chunk_029_google": {
+      "video_id": "SSYouTubeonline_chunk_029",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:45.472377"
+    },
+    "SSYouTubeonline_chunk_029_whisper": {
+      "video_id": "SSYouTubeonline_chunk_029",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:47:42.059862"
+    },
+    "SSYouTubeonline_chunk_000_google": {
+      "video_id": "SSYouTubeonline_chunk_000",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:53.037173"
+    },
+    "SSYouTubeonline_chunk_000_whisper": {
+      "video_id": "SSYouTubeonline_chunk_000",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:48:12.466751"
+    },
+    "SSYouTubeonline_chunk_014_google": {
+      "video_id": "SSYouTubeonline_chunk_014",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:57.612180"
+    },
+    "SSYouTubeonline_chunk_014_whisper": {
+      "video_id": "SSYouTubeonline_chunk_014",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:48:32.040268"
+    },
+    "SSYouTubeonline_chunk_028_google": {
+      "video_id": "SSYouTubeonline_chunk_028",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:57:00.346372"
+    },
+    "SSYouTubeonline_chunk_028_whisper": {
+      "video_id": "SSYouTubeonline_chunk_028",
+      "model": "whisper",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T00:50:58.760082"
+    },
+    "SSYouTubeonline_chunk_031_google": {
+      "video_id": "SSYouTubeonline_chunk_031",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:54:19.059079"
+    },
+    "SSYouTubeonline_chunk_040_google": {
+      "video_id": "SSYouTubeonline_chunk_040",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:55:42.089977"
+    },
+    "SSYouTubeonline_chunk_004_google": {
+      "video_id": "SSYouTubeonline_chunk_004",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:01.663191"
+    },
+    "SSYouTubeonline_chunk_013_google": {
+      "video_id": "SSYouTubeonline_chunk_013",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:24.398434"
+    },
+    "SSYouTubeonline_chunk_012_google": {
+      "video_id": "SSYouTubeonline_chunk_012",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:26.431104"
+    },
+    "SSYouTubeonline_chunk_003_google": {
+      "video_id": "SSYouTubeonline_chunk_003",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:44.002136"
+    },
+    "SSYouTubeonline_chunk_015_google": {
+      "video_id": "SSYouTubeonline_chunk_015",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-11T03:56:49.999070"
+    },
+    "hxhLGCguRO0_test_chunk_008_google": {
+      "video_id": "hxhLGCguRO0_test_chunk_008",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 3,
+      "total_chunks": 3,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T08:50:47.598392"
+    },
+    "hxhLGCguRO0_test_chunk_003_google": {
+      "video_id": "hxhLGCguRO0_test_chunk_003",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 3,
+      "total_chunks": 3,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T08:50:49.514874"
+    },
+    "hxhLGCguRO0_test_chunk_001_google": {
+      "video_id": "hxhLGCguRO0_test_chunk_001",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T08:50:50.284728"
+    },
+    "hxhLGCguRO0_test_chunk_000_google": {
+      "video_id": "hxhLGCguRO0_test_chunk_000",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T08:50:50.942516"
+    },
+    "hxhLGCguRO0_test_chunk_005_google": {
+      "video_id": "hxhLGCguRO0_test_chunk_005",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T08:50:52.215541"
+    },
+    "hxhLGCguRO0_test_chunk_006_google": {
+      "video_id": "hxhLGCguRO0_test_chunk_006",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T08:50:53.827410"
+    },
+    "A00000000_test_chunk_004_google": {
+      "video_id": "A00000000_test_chunk_004",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 6,
+      "total_chunks": 6,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T11:30:01.805962"
+    },
+    "A00000000_test_chunk_001_google": {
+      "video_id": "A00000000_test_chunk_001",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T11:30:03.062161"
+    },
+    "A00000000_test_chunk_000_google": {
+      "video_id": "A00000000_test_chunk_000",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 2,
+      "total_chunks": 2,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T11:30:08.597981"
+    },
+    "A00000000_test_chunk_002_google": {
+      "video_id": "A00000000_test_chunk_002",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 1,
+      "total_chunks": 1,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T11:30:11.556204"
+    },
+    "A00000000_test_chunk_003_google": {
+      "video_id": "A00000000_test_chunk_003",
+      "model": "google",
+      "status": "completed",
+      "chunks_transcribed": 5,
+      "total_chunks": 5,
+      "completion_rate": 100.0,
+      "last_updated": "2025-10-24T11:30:21.051599"
     }
   },
-  "last_updated": "2025-08-30T01:30:06.309739"
+  "last_updated": "2025-10-24T11:30:21.061286"
 }

@@ -1,0 +1,80 @@
+# Docker ignore file for Bengali Speech Pipeline
+# Excludes unnecessary files from Docker build context
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Data directories (large files - will be mounted as volumes)
+downloads/
+outputs/
+experiments/
+data/
+denoised_audio/
+amplified_denoised_audio/
+sample_data/
+
+# Log files
+logs/
+*.log
+
+# Git
+.git/
+.gitignore
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+temp/
+tmp/
+
+# Documentation drafts
+*.draft.md
+
+# Test outputs
+test_output/
+test_results/
+
+# NOTE: We INCLUDE SyncNet data, weights, and modified libraries in the Docker image
+# so users don't need to download anything. The following are NOT excluded:
+# - ../syncnet_python/ (entire directory with modifications)
+# - ../syncnet_python/data/ (pretrained models and weights)
+# - ../syncnet_python/scenedetect/ (modified library)
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Environment files
+.env
+.env.local
